@@ -70,7 +70,7 @@ namespace ProyectoEpilepsia.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Bienvenido {0}.
+        ///   Busca una cadena traducida similar a Bienvenido {name}.
         /// </summary>
         public static string Welcome {
             get {

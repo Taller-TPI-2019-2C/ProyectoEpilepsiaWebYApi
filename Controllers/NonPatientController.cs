@@ -12,7 +12,7 @@ namespace ProyectoEpilepsia.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.Guardians = ServiceNonPatient.GetPatients((int)HttpContext.Session.GetInt32("UserID"));
+            ViewBag.Patients = ServiceNonPatient.GetPatients((int)HttpContext.Session.GetInt32("UserID"));
             return View();
         }
     }

@@ -26,11 +26,13 @@ namespace ProyectoEpilepsia.Controllers
                 if (user.Patient)
                 {
                     HttpContext.Session.SetString("BirthDate", user.TblPatientData.BirthDate.ToString("dd/MM/yyyy"));
+                    HttpContext.Session.SetString("Name", user.TblPatientData.FirstName + " " + user.TblPatientData.LastName);
                     return RedirectToAction("Index", "Patient");
                 }
                 else
                 {
                     HttpContext.Session.SetString("BirthDate", user.TblNonPatientData.BirthDate.ToString("dd/MM/yyyy"));
+                    HttpContext.Session.SetString("Name", user.TblNonPatientData.FirstName + " " + user.TblNonPatientData.LastName);
                     return RedirectToAction("Index", "NonPatient");
                 }
             }

@@ -6,7 +6,7 @@
 
 <h2>@RsShared.Welcome.Replace("{name}",@Context.Session.GetString("Name"))</h2>
 
-<span>@RsPatient.YourGuardians</span>
+<span>@RsNonPatient.YourPatients</span>
 <table class="table">
     <thead>
         <tr>
@@ -15,11 +15,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (TblNonPatientData guardian in ViewBag.Guardians)
+        @foreach (TblPatientData patient in ViewBag.Patients)
         {
         <tr>
-            <td>@guardian.FirstName</td>
-            <td>@guardian.LastName</td>
+            <td>@patient.FirstName</td>
+            <td>@patient.LastName</td>
         </tr>
         }
     </tbody>

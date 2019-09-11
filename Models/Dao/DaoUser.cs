@@ -19,7 +19,10 @@ namespace ProyectoEpilepsia.Models
         {
             using (var ctx = new Context())
             {
-                return ctx.TblUser.Where(x=>x.Email==form.User&&x.Password==form.Pwd).FirstOrDefault();
+                return ctx.TblUser.Where(x=>x.Email==form.User&&x.Password==form.Pwd)
+                    .Include(x => x.TblPatientData)
+                    .Include(x => x.TblNonPatientData)
+                    .FirstOrDefault();
             }
         }
         
