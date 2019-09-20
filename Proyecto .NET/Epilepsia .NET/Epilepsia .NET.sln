@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epilepsia .NET", "Epilepsia .NET\Epilepsia .NET.csproj", "{EEAD9721-AAB8-4F46-BD39-3D489A6D9D0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEAD9721-AAB8-4F46-BD39-3D489A6D9D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAD9721-AAB8-4F46-BD39-3D489A6D9D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAD9721-AAB8-4F46-BD39-3D489A6D9D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAD9721-AAB8-4F46-BD39-3D489A6D9D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B137DF6-BC99-4969-B84E-2A52DAFCC376}
+	EndGlobalSection
+EndGlobal
