@@ -1,0 +1,32 @@
+﻿<!--
+ESTO ES UN ARCHIVO DE EJEMPLO PARA CUANDO SE AGREGE LA BASE DE DATOS.
+
+EL CHISTE ES AGREGAR EL CONNECTIONSTRING EN EL WEBCONFIG. UNA VEZ HECHO ESO, QUITAR EL STRING DE AHÍ Y 
+REFERIRLO A UN ARCHIVO LLAMADO 'Connection.config'. ESTE ARCHIVO NO EXISTE AHORA OBVIAMENTE, PARA CREARLO 
+SIMPLEMENTE SE COPIA ESTE Y SE LE BORRA EL '.template'. EL ARCHIVO CON LA CADENA DE CONEXIÓN NO VA SER 
+VIGILADO POR GIT, ASÍ QUE NO HAY QUE ESTAR EDITANDO LA CONEXIÓN A CADA RATO.
+
+(ESTE ARCHIVO SI, NO BORRARLO. ESTA COMO EJEMPLO) 
+
+CREAR UNA COPIA DE ESTE ARCHIVO Y LLAMARLA 'Connection.config'.
+LA COPIA DEBE ESTAR AL MISMO NIVEL QUE ESTE ARCHIVO.
+
+EDITAR...
+  BASICAMENTE ES COPIAR EL CONNECTIONSTRING Y PONERLO DEBAJO DEL COMENTARIO
+  
+EL ARCHIVO 'Connection.config' NO ES VIGILADO POR GIT, PERO ESTE SI.
+NO EDITAR ESTE ARCHIVO!!! (ESTA DE EJEMPLO). LO DE ABAJO ES EL QUE USÉ EN PROG WEB III QUE DEJÉ COMO EJEMPLO
+-->
+
+<connectionStrings>
+  <add name="PW3TP_20181C_TareasEntities"
+       connectionString="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;
+       provider connection string=&quot;
+       data source=_INSTANCIA_SQL_;
+       initial catalog=PW3TP_20181C_Tareas;
+       persist security info=True;
+       user id=_USUARIO_SQL_;
+       password=_PASSWORD_SQL_;
+       MultipleActiveResultSets=True;
+       App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+</connectionStrings>

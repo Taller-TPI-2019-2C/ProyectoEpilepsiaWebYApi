@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Leeme";
+}
+
+<h2>Detalles sobre el .gitIgnore</h2>
+
+<pre>
+    - Esta preparado para almacenar archivos, seguramente no lo necesitemos pero por las dudas.
+    <i>(Simplemente una carpeta llamada 'Archivos' en cualquier parte del repo y todo lo que este dentro es ignorado)</i>
+
+    - Esta preparado para tener un ConnectionString individual y que no se necesite estar tocando el Web.config a cada rato
+    <i>(Como usar <b>[No puse la BDD todavía porque falta definir el script, al menos el de base]</b>)</i>
+        * En el momento de agregar la base de datos, elegir poner la cadena de conexión en el Web.config
+        * Copiar/Guardar la cadena para luego incluirla en el otro archivo
+        * Editar la cadena para que refiera al archivo 'Connection.config' 
+                    <xmp>            <connectionStrings configSource="Connection.config" /></xmp>
+        * Crear una copia del 'Connection.config.template' y renombrarlo 'Connection.config'. <i><b>(NO BORRAR EL TEMPLATE)</b></i>
+        * Agregar la cadena de conexión en este nuevo archivo que no es vigilado por GIT
+</pre>
+
+<h2>Rutas</h2>
+
+<h4>Controller => Home</h4>
+
+<pre>
+    /Home/Index.cshtml
+    /Home/Login.cshtml
+    /Home/Registro.cshtml
+    /Home/Confirmacion.cshtml
+</pre>
+
+<h4>Controller => Perfil</h4>
+
+<pre>
+    /Perfil/Datos.cshtml
+    /Perfil/Rol.cshtml
+    /Perfil/PersonasEnAlerta.cshtml
+    /Perfil/Solicitudes.cshtml
+</pre>
+
+<h4>Controller => Editar</h4>
+
+<pre>
+    /Editar/Datos/{IdPerfilUsuario}.cshtml
+    /Editar/PersonaEnAlerta/{idPersonaEnAlerta}.cshtml
+</pre>
+
+<h4>Controller => CustomController</h4>
+
+<pre>
+    Las secciones 'Perfil' y 'Editar' requieren que el usuario este logeado. Estoy haciendo que estos dos 
+    controladores hereden de 'CustomController'. En este controlador estoy sobreescribiendo un método que se 
+    ejecta antes de lo que esta en el ActionResult correspondiente. Aca basicamente se puede preguntar si el 
+    user esta logeado, de la forma que sea que se use (Para no estar pidiendo las mismas cosas en todos los 
+    ActionResult).
+</pre>
