@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'arial_rounded_mt_bold';
+
+    src:url(arial_rounded_mt_bold.TTF) format('arial_rounded_mt_bold');
+  }
+
+
+html, body
+{
+    height: 100%;
+    width: 100%;
+    margin:0 auto;
+    font-family: 'arial_rounded_mt_bold' ;
+}
+
+
+
+.row
+{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+html::-webkit-scrollbar
+{
+	height: 10px;
+	width: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 4px;
+}
+
+
+html::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 255, 0);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+html::-webkit-scrollbar-thumb:active {
+    background-color: rgb(0, 255, 0)
+}
+
+
+
+.barra
+{
+    box-shadow: 0px 5px 10px red;
+}
+.fondo
+{
+    margin-top:65px; 
+    width: 100%;
+ background-color: rgba(0, 255, 0, 0.438);
+}
+.ti
+{
+    width: 50%;
+    min-width:400px;
+    z-index: -50;
+    position: absolute;
+    right: 0;
+}
+
+
+.ep
+{
+    display: inline-block;
+    margin-top: 13%;
+    width: 50%;
+    min-width: 200px;
+    margin-bottom: 7%;
+}
+
+
+
+@media screen and (max-width: 767px) 
+{
+ 
+    .ep
+    {
+        width: 100%;
+    }
+    .contenedor
+    {
+        display: inline-block !important;
+        text-align: center;
+    }
+
+    .ep
+    {
+    
+        justify-content: center;
+        margin-bottom: 0%;
+        }   
+
+    .texto_banner
+    {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .ti{
+        width: 90%;
+        min-width: 350px;
+    }
+}
+.logo
+{
+    width: 130px;
+}
+
+
+.sub_con
+{
+    width: 300px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 0%;
+}
+.tam_img
+{
+    width: 50%;
+
+}
+
+.contenedor_1
+{
+    background-color: rgb(240, 0, 0);
+}
+
+.con_mit
+{
+    width: 50%;
+ 
+}
+
+
+
+@media screen and (max-width: 767px) 
+{
+ 
+    .tam_img
+    {
+        width: 70%;
+    }
+    .sub_con
+    {
+        width: 50%;
+
+    }
+    
+ 
+    .con_mit
+    {
+        width: 100%;
+        text-align: center;
+    }
+    .mt_img
+    {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+.navbar
+{
+    background-color: yellow;
+}
+
+
+.btn
+{
+    background-color: rgb(0, 0, 0);
+    border: none;
+}
+
+.btn:hover
+{
+    background-color: rgb(255, 255, 0);
+}
+
+.ct
+{
+color: blue;
+}
+
+/* ***************** footer ******************* */
+.foter
+{
+    height: 600px;
+    width: 100%;
+    bottom: 0;
+    background-color: #4a3f61;;
+}
+
+.img_tam
+{
+    margin-top: 20%;
+    height: 200px;
+
+}
+
+
+@media screen and (max-width: 767px) 
+{
+    .tex_man
+    {
+        margin-bottom: 100px !important;
+    }
+}
