@@ -2,14 +2,16 @@ html, body {
     height: 100%;
     font-family: "Arial Rounded MT Bold";
     color: rgb(94, 32, 90);
+    background-image: url("../img/persona-durmiendo-greyscale.jpg");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-/*Color del logo*/
-.color-bg-light{
+/*.color-bg-light{
 	background-color: rgb(202, 196, 204);
-}
+}*/
 
-/*Color del logo*/
 .color-aura-dark{
 	background-color: rgb(20, 0, 20);
 }
