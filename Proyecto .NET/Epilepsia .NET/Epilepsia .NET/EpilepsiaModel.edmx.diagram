@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d27b95aa0e845a886234cb94c30f875" Name="Diagram1">
+        <EntityTypeShape EntityType="Epilepsia_TP_Model.Alerta" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Epilepsia_TP_Model.Registro_Episodio" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Epilepsia_TP_Model.Telefono" Width="1.5" PointX="8" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Epilepsia_TP_Model.Token_Login" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Epilepsia_TP_Model.Tratamiento" Width="1.5" PointX="5.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Epilepsia_TP_Model.Usuario" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="Epilepsia_TP_Model.FK_Usuario_Paciente" ManuallyRouted="false" />
+        <AssociationConnector Association="Epilepsia_TP_Model.FK_Usuario_Tutor" ManuallyRouted="false" />
+        <AssociationConnector Association="Epilepsia_TP_Model.FK_Registro_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Epilepsia_TP_Model.FK_Telefono_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Epilepsia_TP_Model.FK_Token_Login_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="Epilepsia_TP_Model.FK_Tratamiento_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
