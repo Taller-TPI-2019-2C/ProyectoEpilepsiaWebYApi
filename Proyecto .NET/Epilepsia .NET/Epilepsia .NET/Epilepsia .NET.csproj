@@ -139,6 +139,7 @@
     <Compile Include="Controllers\EditarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Dao\UsuarioDao.cs" />
     <Compile Include="EpilepsiaModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -161,6 +162,7 @@
     <Compile Include="Registro_Episodio.cs">
       <DependentUpon>EpilepsiaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Servicios\UsuarioServicio.cs" />
     <Compile Include="Telefono.cs">
       <DependentUpon>EpilepsiaModel.tt</DependentUpon>
     </Compile>

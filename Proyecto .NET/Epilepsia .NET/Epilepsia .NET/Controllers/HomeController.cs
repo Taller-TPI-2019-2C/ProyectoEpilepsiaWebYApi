@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Epilepsia.NET.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,9 +12,7 @@ namespace Epilepsia.NET.Controllers
         //Esto esta solo para dar info para que arranquemos. Después se debe borrar
         public ActionResult Leeme()
         {
-            using(Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities()){
-                ViewBag.CantidadUsuarios = ctx.Usuario.Count();
-            }
+            ViewBag.CantidadDeUsuariosRegistrados = UsuarioServicio.obtenerCantidadDeUsuariosRegistrados();
             return View();
         }
         
