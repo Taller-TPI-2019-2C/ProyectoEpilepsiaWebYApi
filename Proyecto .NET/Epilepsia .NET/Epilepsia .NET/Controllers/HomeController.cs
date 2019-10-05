@@ -12,7 +12,7 @@ namespace Epilepsia.NET.Controllers
         //Esto esta solo para dar info para que arranquemos. Después se debe borrar
         public ActionResult Leeme()
         {
-            ViewBag.CantidadDeUsuariosRegistrados = UsuarioServicio.obtenerCantidadDeUsuariosRegistrados();
+            ViewBag.CantidadDeUsuariosRegistrados = UsuarioServicio.ObtenerCantidadDeUsuariosRegistrados();
             return View();
         }
         
