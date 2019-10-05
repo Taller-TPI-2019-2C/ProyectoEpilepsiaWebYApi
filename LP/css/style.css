@@ -12,6 +12,10 @@ html, body {
 	background-color: rgb(20, 0, 20);
 }
 
+.color-login{
+    color: rgb(94, 32, 90);
+}
+
 .contenido{	
 	padding-top: 50px;
 }
@@ -34,6 +38,17 @@ html, body {
    box-shadow: none;
 }
 
+.acceder-link{
+    color: rgb(94, 32, 90);
+    font-size: 20px; 
+    margin: 5px;
+}
+
+.acceder-link:hover{
+    color: rgb(163, 46, 155);
+    text-decoration: none;
+}
+
 .btn:hover
 {
     background-color: rgb(94, 32, 90);
@@ -42,5 +57,34 @@ html, body {
 
 .texto-landing{
 	font-size: 20px;
+}
+
+/*Logo*/
+/* Small. Above 34em (544px) */
+@media screen and (min-width: 34em) { 
+    .img-logo{
+        width: 200px;
+    }
+}
+
+/* Medium. Above 48em (768px) */
+@media screen and (min-width: 48em) { 
+    .img-logo{
+        width: 200px;
+    }
+}
+
+/* Large. Above 62em (992px) */
+@media screen and (min-width: 62em) { 
+    .img-logo{
+        width: 300px;
+    }
+}
+
+/* Extra large. Above 75em (1200px) */
+@media screen and (min-width: 75em) { 
+    .img-logo{
+        width: 300px;
+    }
 }
 
