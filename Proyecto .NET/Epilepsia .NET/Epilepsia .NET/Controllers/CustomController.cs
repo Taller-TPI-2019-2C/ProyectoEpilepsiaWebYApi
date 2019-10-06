@@ -16,6 +16,16 @@ namespace Epilepsia.NET.Controllers
         {
             string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
             Debug.WriteLine("====Estas en el controlador: " + controllerName);
+
+            if (Session["UsuarioId"] == null)
+            {
+                string urlIntentada = Request.Url.ToString();
+                UrlHelper u = new UrlHelper(this.ControllerContext.RequestContext);
+                string urlNueva = u.Action("Index",
+                    "Home",
+                    new { ReturnUrl = urlIntentada });
+                //filterContext.Result = Redirect(urlNueva);
+            }
         }
     }
 }
