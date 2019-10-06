@@ -4,39 +4,37 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<div class="row justify-content-center">
+    <div class="jumbotron col-xl-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 jumbotron-aura">
+        @using (@Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
 
-<p>Login con cuenta y opción para usar cuenta de Google.</p>
+            @Html.LabelFor(model => model.Email)
+            <br />
+            @Html.TextBoxFor(model => model.Email, new { @placeholder = "Ej: email@hotmail.com", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            @Html.LabelFor(model => model.Contrasenia)
+            <br />
+            @Html.PasswordFor(model => model.Contrasenia, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger" })
+            <br />
+            <br />
 
-@using (@Html.BeginForm("Login", "Home", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+            <div class="text-center">
+                <input type="submit" value="Iniciar sesi&oacute;n" class="btn btn-primary" />
+            </div>
 
-    @Html.LabelFor(model => model.Email)
-    <br />
-    @Html.TextBoxFor(model => model.Email, new { @placeholder = "Ej: email@hotmail.com", @class = "form-control" })
-    <br />
-    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-    <br />
+            if (ViewData["MensajeLogin"] != null)
+            {
+                <br />
+                <div class="alert alert-danger centermsg" role="alert">
+                    @ViewData["MensajeLogin"]
+                </div>
 
-    @Html.LabelFor(model => model.Contrasenia)
-    <br />
-    @Html.PasswordFor(model => model.Contrasenia, new { @class = "form-control" })
-    <br />
-    @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger" })
-    <br />
-    <br />
-
-    <div class="text-center">
-        <input type="submit" value="Iniciar sesi&oacute;n" class="btn btn-primary" />
+            }
+        }
     </div>
-
-    if (ViewData["MensajeLogin"] != null)
-    {
-        <br />
-        <div class="alert alert-danger centermsg" role="alert">
-            @ViewData["MensajeLogin"]
-        </div>
-
-    }
-}
+</div>

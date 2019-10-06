@@ -56,6 +56,11 @@
     font-size: 20px;
 }
 
+.jumbotron-aura {
+    border-style: solid;
+    background: rgba(204, 204, 204, 0.5);
+}
+
 /*Logo*/
 /* Small. Above 34em (544px) */
 @media screen and (min-width: 34em) {

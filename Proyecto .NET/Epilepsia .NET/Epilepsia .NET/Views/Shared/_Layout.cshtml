@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Usuario usuario = Session["Usuario"] as Usuario;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="/img/AuraLogoNoBG.png" height="120" class="d-inline-block align-top img-logo" alt="">
                 </a>
             </li>
@@ -22,7 +26,7 @@
         </button>
         <!-- Debo arreglar la chanchada de abajo luego, no debería poner dos veces lo mismo -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            @if (Session["UsuarioId"] == null)
+            @if (usuario == null)
             {
                 <!-- En pantalla normal -->
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -48,11 +52,17 @@
                 <!-- En pantalla normal -->
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item d-none d-md-block">
+                        <a class="acceder-link" href="/Perfil/Datos">Mi cuenta</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
                         <a class="acceder-link" href="/Home/Logout">Cerrar sesión</a>
                     </li>
                 </ul>
                 <!-- En pantalla chica -->
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0 d-lg-none d-md-none">
+                    <li class="nav-item">
+                        <a class="acceder-link" href="/Perfil/Datos">Mi cuenta</a>
+                    </li>
                     <li class="nav-item">
                         <a class="acceder-link" href="/Home/Logout">Cerrar sesión</a>
                     </li>
@@ -62,6 +72,10 @@
     </nav>
 
     <div class="container-fluid body-content">
+        @if (usuario != null)
+        {
+            <text>Hola @usuario.Nombre @usuario.Apellido! (Esto esta aca temporalmente)</text>
+        }
         @RenderBody()
     </div>
 

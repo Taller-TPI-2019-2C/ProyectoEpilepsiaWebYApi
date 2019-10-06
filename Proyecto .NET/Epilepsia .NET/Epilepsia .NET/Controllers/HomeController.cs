@@ -34,6 +34,7 @@ namespace Epilepsia.NET.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(FormLogin formLogin)
         {
             if (!ModelState.IsValid)
@@ -44,18 +45,15 @@ namespace Epilepsia.NET.Controllers
             Usuario usuario = UsuarioServicio.ObtenerUsuario(formLogin);
             if(usuario != null)
             {
-                Session.Add("UsuarioId", usuario.Id);
+                Session.Add("Usuario", usuario);
 
-                /*Si se intento entrar a una URL que requiere logearse, te devuelvo a esa. Si no, 
-                 al Index*/
+                //Por si se intento ingresar a una url que requería estar logeado, te llevo ahí
                 string destino = HttpUtility.ParseQueryString(Request.UrlReferrer.Query)["ReturnUrl"];
-                if (destino != null)
-                    return Redirect(destino);
+                if (destino != null)    return Redirect(destino);
 
                 return RedirectToAction("Index");
             }
 
-            //Login incorrecto
             ViewData["MensajeLogin"] = "No se pudo acceder al sistema. Revise sus credenciales.";
             return View();
         }

@@ -17,7 +17,7 @@ namespace Epilepsia.NET.Controllers
             string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
             Debug.WriteLine("====Estas en el controlador: " + controllerName);
 
-            if (Session["UsuarioId"] == null)
+            if (Session["Usuario"] == null)
             {
                 string urlIntentada = Request.Url.ToString();
                 UrlHelper u = new UrlHelper(this.ControllerContext.RequestContext);
