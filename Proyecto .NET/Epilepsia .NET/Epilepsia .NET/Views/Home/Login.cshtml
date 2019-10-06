@@ -1,8 +1,42 @@
-﻿
+﻿@model Epilepsia.NET.Models.FormLogin
+
 @{
     ViewBag.Title = "Login";
 }
 
 <h2>Login</h2>
 
-Login con cuenta y opción para usar cuenta de Google.
+<p>Login con cuenta y opción para usar cuenta de Google.</p>
+
+@using (@Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(model => model.Email)
+    <br />
+    @Html.TextBoxFor(model => model.Email, new { @placeholder = "Ej: email@hotmail.com", @class = "form-control" })
+    <br />
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(model => model.Contrasenia)
+    <br />
+    @Html.PasswordFor(model => model.Contrasenia, new { @class = "form-control" })
+    <br />
+    @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <div class="text-center">
+        <input type="submit" value="Iniciar sesi&oacute;n" class="btn btn-primary" />
+    </div>
+
+    if (ViewData["MensajeLogin"] != null)
+    {
+        <br />
+        <div class="alert alert-danger centermsg" role="alert">
+            @ViewData["MensajeLogin"]
+        </div>
+
+    }
+}

@@ -1,4 +1,5 @@
 ﻿using Epilepsia.NET.Dao;
+using Epilepsia.NET.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +15,11 @@ namespace Epilepsia.NET.Servicios
         public static int ObtenerCantidadDeUsuariosRegistrados()
         {
             return UsuarioDao.ObtenerCantidadDeUsuariosRegistrados();
+        }
+
+        public static Usuario ObtenerUsuario(FormLogin formLogin)
+        {
+            return UsuarioDao.ObtenerUsuario(formLogin);
         }
 
         //Esto no ira aca seguramente, aun no se bien como funciona el método. Sería parte de la API

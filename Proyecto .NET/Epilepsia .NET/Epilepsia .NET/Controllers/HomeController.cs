@@ -1,4 +1,5 @@
-﻿using Epilepsia.NET.Servicios;
+﻿using Epilepsia.NET.Models;
+using Epilepsia.NET.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,56 @@ namespace Epilepsia.NET.Controllers
         //Se debería poder acceder solo cuando el user no esta logeado. Debe incluír login con Google
         public ActionResult Login()
         {
+            if (Session["UsuarioId"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(FormLogin formLogin)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            Usuario usuario = UsuarioServicio.ObtenerUsuario(formLogin);
+            if(usuario != null)
+            {
+                Session.Add("UsuarioId", usuario.Id);
+
+                /*Si se intento entrar a una URL que requiere logearse, te devuelvo a esa. Si no, 
+                 al Index*/
+                string destino = HttpUtility.ParseQueryString(Request.UrlReferrer.Query)["ReturnUrl"];
+                if (destino != null)
+                    return Redirect(destino);
+
+                return RedirectToAction("Index");
+            }
+
+            //Login incorrecto
+            ViewData["MensajeLogin"] = "No se pudo acceder al sistema. Revise sus credenciales.";
+            return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            if (Session["UsuarioId"] != null)
+            {
+                Session.Abandon();
+            }
+            return RedirectToAction("Index");
         }
 
         //Se debería poder acceder solo cuando el user no esta logeado.
         public ActionResult Registro()
         {
+            if (Session["UsuarioId"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

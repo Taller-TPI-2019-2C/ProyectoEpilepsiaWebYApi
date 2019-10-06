@@ -21,10 +21,10 @@ namespace Epilepsia.NET.Controllers
             {
                 string urlIntentada = Request.Url.ToString();
                 UrlHelper u = new UrlHelper(this.ControllerContext.RequestContext);
-                string urlNueva = u.Action("Index",
+                string urlNueva = u.Action("Login",
                     "Home",
                     new { ReturnUrl = urlIntentada });
-                //filterContext.Result = Redirect(urlNueva);
+                filterContext.Result = Redirect(urlNueva);
             }
         }
     }
