@@ -60,10 +60,7 @@ namespace Epilepsia.NET.Controllers
 
         public ActionResult LogOut()
         {
-            if (Session["UsuarioId"] != null)
-            {
-                Session.Abandon();
-            }
+                Session.Clear();
             return RedirectToAction("Index");
         }
 
