@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Epilepsia.NET.Models.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace Epilepsia.NET.Models
 
         [Required]
         [Display(Name = "¿Qué uso le daras a nuestra aplicación?")]
+        [TipoUsuarioPermitido(AllowableValues = new[] { "Paciente", "Tutor" }, ErrorMessage = "Error en la seleción. Intente de nuevo")]
         public string Tipo_Paciente { set; get; }
         public IEnumerable<SelectListItem> Pacientes { set; get; }
     }

@@ -194,6 +194,7 @@
     </Compile>
     <Compile Include="Models\FormLogin.cs" />
     <Compile Include="Models\FormRegistro.cs" />
+    <Compile Include="Models\Util\TipoUsuarioPermitidoAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro_Episodio.cs">
       <DependentUpon>EpilepsiaModel.tt</DependentUpon>
