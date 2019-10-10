@@ -32,5 +32,32 @@ namespace Epilepsia.NET.Dao
                 }                
             }
         }
+
+        public static Usuario AgregarUsuario(FormRegistro formRegistro)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                try
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.Nombre = formRegistro.Nombre;
+                    usuario.Apellido = formRegistro.Apellido;
+                    usuario.Email = formRegistro.Email;
+                    usuario.Contrasenia = formRegistro.Contrasenia;
+                    usuario.Edad = int.Parse(formRegistro.Edad);
+                    usuario.Tipo_Usuario = formRegistro.Tipo_Paciente;
+
+                    ctx.Usuario.Add(usuario);
+                    ctx.SaveChanges();
+
+                    return usuario;
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Excepción: " + e.Message);
+                    return null;
+                }
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace Epilepsia.NET.Models
         [Required]
         public string Email {get; set;}
         [Required]
+        [Display(Name = "Contraseña")]
         public string Contrasenia { get; set; }
     }
 }

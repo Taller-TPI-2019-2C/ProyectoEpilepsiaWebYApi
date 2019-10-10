@@ -22,6 +22,11 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.ObtenerUsuario(formLogin);
         }
 
+        public static Usuario AgregarUsuario(FormRegistro formRegistro)
+        {
+            return UsuarioDao.AgregarUsuario(formRegistro);
+        }
+
         //Esto no ira aca seguramente, aun no se bien como funciona el método. Sería parte de la API
         public static bool EnviarNotificacionHaciaCelular(string token)
         {

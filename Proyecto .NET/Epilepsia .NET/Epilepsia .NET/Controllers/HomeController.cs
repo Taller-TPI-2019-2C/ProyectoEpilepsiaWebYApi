@@ -67,11 +67,29 @@ namespace Epilepsia.NET.Controllers
         //Se debería poder acceder solo cuando el user no esta logeado.
         public ActionResult Registro()
         {
-            if (Session["UsuarioId"] != null)
+            if (Session["Usuario"] != null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+
+            return View(new FormRegistro());
+        }
+
+        [HttpPost]
+        [ActionName("Registro")]
+        public ActionResult ProcesarRegistro(FormRegistro formRegistro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Registro", formRegistro);
+            }
+
+            Usuario usuario = UsuarioServicio.AgregarUsuario(formRegistro);
+
+            if (usuario == null)
+                return View("Registro", formRegistro);
+
+            return RedirectToAction("Index");
         }
 
         /*Se debería poder acceder solo cuando el user no esta logeado (y que justo te registres)
