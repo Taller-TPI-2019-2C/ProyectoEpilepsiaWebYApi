@@ -79,6 +79,11 @@ namespace Epilepsia.NET.Controllers
         [ActionName("Registro")]
         public ActionResult ProcesarRegistro(FormRegistro formRegistro)
         {
+            if (UsuarioServicio.EmailEnUso(formRegistro.Email))
+            {
+                ModelState.AddModelError("Email", "El correo electrónico se encuentra en uso");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View("Registro", formRegistro);

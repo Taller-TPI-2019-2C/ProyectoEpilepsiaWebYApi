@@ -22,6 +22,11 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.ObtenerUsuario(formLogin);
         }
 
+        public static bool EmailEnUso(string email)
+        {
+            return UsuarioDao.EmailEnUso(email);
+        }
+
         public static Usuario AgregarUsuario(FormRegistro formRegistro)
         {
             return UsuarioDao.AgregarUsuario(formRegistro);

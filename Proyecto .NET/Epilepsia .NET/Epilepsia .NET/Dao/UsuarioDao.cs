@@ -21,16 +21,17 @@ namespace Epilepsia.NET.Dao
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                try
-                {
-                    return ctx.Usuario.First(x => x.Email == formLogin.Email && x.Contrasenia == formLogin.Contrasenia);
-                }
-                catch(Exception e)
-                {
-                    System.Diagnostics.Debug.WriteLine("Excepción: " + e.Message);
-                    return null;
-                }                
+                return ctx.Usuario.FirstOrDefault(x => x.Email == formLogin.Email && x.Contrasenia == formLogin.Contrasenia);   
             }
+        }
+
+        public static bool EmailEnUso(string email)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                return ctx.Usuario.FirstOrDefault(x => x.Email == email) != null ? true : false;
+            }
+
         }
 
         public static Usuario AgregarUsuario(FormRegistro formRegistro)
