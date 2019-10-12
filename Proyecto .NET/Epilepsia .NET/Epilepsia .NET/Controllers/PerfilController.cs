@@ -10,7 +10,6 @@ namespace Epilepsia.NET.Controllers
 {
     public class PerfilController : CustomController
     {
-        //Aca ves tus datos, podes ir a /Editar/Datos/IdPerfilUsuario (Entrada Default si vas a /Perfil/)
         public ActionResult Datos()
         {
             FormEditarDatos formEditarDatos = UsuarioServicio.ObtenerDatosEditables(@Session["Usuario"] as Usuario);
@@ -33,16 +32,30 @@ namespace Epilepsia.NET.Controllers
             return RedirectToAction("Datos");
         }
         
-        //Lista de tutores, Form para agregar uno nuevo también. De aca podes ir a '/Editar/PersonaEnAlerta/idPersonaEnAlerta'
+        //Lista de tutores, Form para agregar uno nuevo también. (Si sos tutor no podes entrar)
         public ActionResult PersonasEnAlerta()
         {
-            return View();
+            Usuario usuario = Session["Usuario"] as Usuario;
+
+            if (usuario.Tipo_Usuario == "Paciente")
+            {
+                return View();
+            }
+
+                return RedirectToAction("Solicitudes");
         }
 
-        //Lista de pacientes que te quieren como tutor, aca aceptas o rechazas.
+        //Lista de pacientes que te quieren como tutor, aca aceptas o rechazas. (Si sos paciente no podes entrar)
         public ActionResult Solicitudes()
         {
-            return View();
+            Usuario usuario = Session["Usuario"] as Usuario;
+
+            if (usuario.Tipo_Usuario == "Tutor")
+            {
+                return View();
+            }
+
+            return RedirectToAction("PersonasEnAlerta");
         }
     }
 }
