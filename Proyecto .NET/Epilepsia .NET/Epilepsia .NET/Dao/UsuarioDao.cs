@@ -60,5 +60,19 @@ namespace Epilepsia.NET.Dao
                 }
             }
         }
+
+        public static Usuario ActualizarDatos(FormEditarDatos formEditarDatos)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                Usuario usuario = ctx.Usuario.FirstOrDefault(x => x.Id == formEditarDatos.Id);
+                usuario.Nombre = formEditarDatos.Nombre;
+                usuario.Apellido = formEditarDatos.Apellido;
+                usuario.Tipo_Usuario = formEditarDatos.Tipo_Usuario;
+
+                ctx.SaveChanges();
+                return usuario;
+            }
+        }
     }
 }

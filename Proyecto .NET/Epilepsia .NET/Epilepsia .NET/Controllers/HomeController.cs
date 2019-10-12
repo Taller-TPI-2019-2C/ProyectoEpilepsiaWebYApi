@@ -96,13 +96,5 @@ namespace Epilepsia.NET.Controllers
 
             return RedirectToAction("Index");
         }
-
-        /*Se debería poder acceder solo cuando el user no esta logeado (y que justo te registres)
-         Si se quiere cambiar y dejarlo sin confirmación (Logeandote apenas terminas el registro), yo 
-         no tengo drama. De momento lo hice por las dudas*/
-        public ActionResult Confirmacion()
-        {
-            return View();
-        }
     }
 }

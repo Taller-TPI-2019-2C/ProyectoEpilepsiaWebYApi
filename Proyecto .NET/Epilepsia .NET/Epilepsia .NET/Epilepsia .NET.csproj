@@ -196,6 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormEditarDatos.cs" />
     <Compile Include="Models\FormLogin.cs" />
     <Compile Include="Models\FormRegistro.cs" />
     <Compile Include="Models\Util\TipoUsuarioPermitidoAttribute.cs" />
@@ -228,11 +229,9 @@
     <Content Include="Views\Home\Leeme.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
-    <Content Include="Views\Home\Confirmacion.cshtml" />
     <Content Include="Views\Editar\Datos.cshtml" />
     <Content Include="Views\Editar\PersonaEnAlerta.cshtml" />
     <Content Include="Views\Perfil\Datos.cshtml" />
-    <Content Include="Views\Perfil\Rol.cshtml" />
     <Content Include="Views\Perfil\PersonasEnAlerta.cshtml" />
     <Content Include="Views\Perfil\Solicitudes.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />

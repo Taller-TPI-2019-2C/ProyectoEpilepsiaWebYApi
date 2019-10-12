@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Epilepsia.NET.Models;
+using Epilepsia.NET.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,17 +13,26 @@ namespace Epilepsia.NET.Controllers
         //Aca ves tus datos, podes ir a /Editar/Datos/IdPerfilUsuario (Entrada Default si vas a /Perfil/)
         public ActionResult Datos()
         {
-            return View();
-        }
-        
-        /*Aca seleccionas si sos paciente o tutor. Según tu rol, podrías ir a...
-         - /Perfil/PersonasEnAlerta => Lista de los tutores que tenes, posibilidad de agregar
-         - /Perfil/Solicitudes => Aceptar o rechazar pacientes*/
-        public ActionResult Rol()
-        {
-            return View();
+            FormEditarDatos formEditarDatos = UsuarioServicio.ObtenerDatosEditables(@Session["Usuario"] as Usuario);
+            return View(formEditarDatos);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Datos(FormEditarDatos formEditarDatos)
+        {
+            Usuario usuarioEnSesion = Session["Usuario"] as Usuario;
+            if (!ModelState.IsValid || usuarioEnSesion.Id != formEditarDatos.Id)
+            {
+                return View("Datos", formEditarDatos);
+            }
+
+            Usuario usuarioActualizado = UsuarioServicio.ActualizarDatos(formEditarDatos);
+            Session["Usuario"] = usuarioActualizado;
+
+            return RedirectToAction("Datos");
+        }
+        
         //Lista de tutores, Form para agregar uno nuevo también. De aca podes ir a '/Editar/PersonaEnAlerta/idPersonaEnAlerta'
         public ActionResult PersonasEnAlerta()
         {

@@ -1,8 +1,37 @@
-﻿
+﻿@model Epilepsia.NET.Models.FormEditarDatos
+
 @{
     ViewBag.Title = "Datos";
 }
 
-<h2>Datos</h2>
+<div class="row justify-content-center">
+    <div class="jumbotron col-xl-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 jumbotron-aura">
+        @using (@Html.BeginForm("Datos", "Perfil", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.AntiForgeryToken()
 
-Aca ves tus datos, además tendrás una opción para editarlos.
+            @Html.HiddenFor(model => model.Id)
+                       
+            @Html.LabelFor(model => model.Nombre)
+            <br />
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(model => model.Apellido)
+            <br />
+            @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+            <br />
+            <br />
+            @Html.LabelFor(model => model.Tipo_Usuario)
+            <br />
+            @Html.DropDownListFor(model => model.Tipo_Usuario,
+                         new SelectList(Model.Pacientes, "Value", "Text"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Tipo_Usuario, "", new { @class = "text-danger" })
+            <br />
+            <br />
+
+            <input type="submit" value="Guardar" class="btn color-aura-dark" />
+        }
+    </div>
+</div>

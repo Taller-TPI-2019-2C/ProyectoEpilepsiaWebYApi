@@ -22,6 +22,21 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.ObtenerUsuario(formLogin);
         }
 
+        public static FormEditarDatos ObtenerDatosEditables(Usuario usuario)
+        {
+            FormEditarDatos formEditarDatos = new FormEditarDatos();
+            formEditarDatos.Id = usuario.Id;
+            formEditarDatos.Nombre = usuario.Nombre;
+            formEditarDatos.Apellido = usuario.Apellido;
+            formEditarDatos.Tipo_Usuario = usuario.Tipo_Usuario;
+            return formEditarDatos;
+        }
+
+        public static Usuario ActualizarDatos(FormEditarDatos formEditarDatos)
+        {
+            return UsuarioDao.ActualizarDatos(formEditarDatos);
+        }
+
         public static bool EmailEnUso(string email)
         {
             return UsuarioDao.EmailEnUso(email);
