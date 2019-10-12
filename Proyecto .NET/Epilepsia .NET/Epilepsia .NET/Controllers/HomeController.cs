@@ -98,7 +98,7 @@ namespace Epilepsia.NET.Controllers
         }
 
         [HttpPost]
-        public ActionResult EarlyAdopter(string email)
+        public ActionResult AgregarEarlyAdopter(string email)
         {
             UsuarioServicio.AgregarEarlyAdopter(email);
             return RedirectToAction("Index");

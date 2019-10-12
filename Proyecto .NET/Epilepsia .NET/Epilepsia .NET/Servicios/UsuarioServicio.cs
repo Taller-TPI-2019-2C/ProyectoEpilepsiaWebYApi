@@ -55,7 +55,7 @@ namespace Epilepsia.NET.Servicios
                 MailAddress m = new MailAddress(email);
                 return UsuarioDao.AgregarEarlyAdopter(email);
             }
-            catch (FormatException)
+            catch (Exception)
             {
                 return email;
             }
