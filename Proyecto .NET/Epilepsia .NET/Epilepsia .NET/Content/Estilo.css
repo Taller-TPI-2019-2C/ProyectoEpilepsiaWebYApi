@@ -8,6 +8,11 @@
     background-size: cover;
 }
 
+@font-face {
+    font-family: "Arial Rounded MT Bold";
+    src: url("/fonts/arial_rounded_mt_bold.TTF");
+}
+
 .color-aura-dark {
     background-color: rgb(20, 0, 20);
 }
