@@ -60,6 +60,13 @@ namespace Epilepsia.NET.Dao
             }
         }
 
+        public static string AgregarEarlyAdopter(string email)
+        {
+            /*Aca se agrega el email a la tabla de emails para early adopters (no creada de momento)
+             - Quedaría validar si el email existe en esa tabla también para no agregar lo mismo dos veces*/
+            return email;
+        }
+
         public static Usuario ActualizarDatos(FormEditarDatos formEditarDatos)
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())

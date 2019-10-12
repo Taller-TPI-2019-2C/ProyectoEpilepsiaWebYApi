@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Web;
 
@@ -45,6 +46,19 @@ namespace Epilepsia.NET.Servicios
         public static Usuario AgregarUsuario(FormRegistro formRegistro)
         {
             return UsuarioDao.AgregarUsuario(formRegistro);
+        }
+
+        public static string AgregarEarlyAdopter(string email)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(email);
+                return UsuarioDao.AgregarEarlyAdopter(email);
+            }
+            catch (FormatException)
+            {
+                return email;
+            }
         }
 
         //Esto no ira aca seguramente, aun no se bien como funciona el método. Sería parte de la API
