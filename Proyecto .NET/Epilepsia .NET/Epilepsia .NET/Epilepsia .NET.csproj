@@ -103,8 +103,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Estilo.css" />
+    <Content Include="img\Aura-A-NoBG.png" />
     <Content Include="img\AuraLogoNoBG.png" />
-    <Content Include="img\persona-durmiendo-greyscale.jpg" />
+    <Content Include="img\background-mobile-greyscale.png" />
+    <Content Include="img\background-desktop-greyscale.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="EpilepsiaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -126,6 +128,7 @@
     <Content Include="EpilepsiaModel.edmx.diagram">
       <DependentUpon>EpilepsiaModel.edmx</DependentUpon>
     </Content>
+    <Content Include="img\background-tablet-greyscale.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

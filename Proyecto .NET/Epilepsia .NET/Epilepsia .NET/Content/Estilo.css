@@ -2,10 +2,6 @@
     height: 100%;
     font-family: "Arial Rounded MT Bold";
     color: rgb(94, 32, 90);
-    background-image: url("../img/persona-durmiendo-greyscale.jpg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 @font-face {
@@ -66,31 +62,66 @@
     background: rgba(204, 204, 204, 0.5);
 }
 
-/*Logo*/
-/* Small. Above 34em (544px) */
-@media screen and (min-width: 34em) {
-    .img-logo {
-        width: 200px;
+@media only screen and (min-width : 320px) {
+    body {
+        background: url('/img/background-mobile-greyscale.png') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
 
-/* Medium. Above 48em (768px) */
-@media screen and (min-width: 48em) {
-    .img-logo {
-        width: 200px;
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+    body {
+        background: url('/img/background-mobile-greyscale.png') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
 
-/* Large. Above 62em (992px) */
-@media screen and (min-width: 62em) {
-    .img-logo {
-        width: 300px;
-    }
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    body {
+        background: url('/img/background-tablet-greyscale.png') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }    
 }
 
-/* Extra large. Above 75em (1200px) */
-@media screen and (min-width: 75em) {
-    .img-logo {
-        width: 300px;
-    }
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    body {
+        background: url('/img/background-desktop-greyscale.jpg') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }    
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    body {
+        background: url('/img/background-desktop-greyscale.jpg') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }    
 }
