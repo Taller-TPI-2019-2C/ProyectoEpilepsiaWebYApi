@@ -45,7 +45,6 @@ namespace Epilepsia.NET.Dao
                     usuario.Apellido = formRegistro.Apellido;
                     usuario.Email = formRegistro.Email;
                     usuario.Contrasenia = formRegistro.Contrasenia;
-                    usuario.Edad = int.Parse(formRegistro.Edad);
                     usuario.Tipo_Usuario = formRegistro.Tipo_Paciente;
 
                     ctx.Usuario.Add(usuario);

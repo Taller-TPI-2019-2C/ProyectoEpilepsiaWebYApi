@@ -28,7 +28,6 @@ namespace Epilepsia.NET.Models
         [Required]
         [Display(Name = "Contraseña")]
         public string Contrasenia { get; set; }
-        [Required]
         [Range(0, int.MaxValue, ErrorMessage = "La edad debe ser un número")]
         public string Edad { get; set; }
 
