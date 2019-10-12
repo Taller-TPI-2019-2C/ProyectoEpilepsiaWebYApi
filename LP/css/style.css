@@ -2,89 +2,125 @@ html, body {
     height: 100%;
     font-family: "Arial Rounded MT Bold";
     color: rgb(94, 32, 90);
-    background-image: url("../img/persona-durmiendo-greyscale.jpg");
-    background-attachment:fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
-.color-aura-dark{
-	background-color: rgb(20, 0, 20);
+@font-face {
+    font-family: "Arial Rounded MT Bold";
+    src: url("../fonts/arial_rounded_mt_bold.TTF");
 }
 
-.color-login{
+.color-aura-dark {
+    background-color: rgb(20, 0, 20);
+}
+
+.color-login {
     color: rgb(94, 32, 90);
 }
 
-.contenido{	
-	padding-top: 50px;
+.contenido {
+    padding-top: 50px;
 }
 
-.foto-derecha{
-	padding-right: 0px;
-	margin-right: 0px;
+.foto-derecha {
+    padding-right: 0px;
+    margin-right: 0px;
 }
 
-.btn
-{
+.btn {
     background-color: rgb(163, 46, 155);
     border: none;
     color: white;
-
 }
 
-.btn:focus,.btn:active {
-   outline: none !important;
-   box-shadow: none;
-}
+    .btn:focus, .btn:active {
+        outline: none !important;
+        box-shadow: none;
+    }
 
-.acceder-link{
+.acceder-link {
     color: rgb(94, 32, 90);
-    font-size: 20px; 
+    font-size: 20px;
     margin: 5px;
 }
 
-.acceder-link:hover{
-    color: rgb(163, 46, 155);
-    text-decoration: none;
-}
+    .acceder-link:hover {
+        color: rgb(163, 46, 155);
+        text-decoration: none;
+    }
 
-.btn:hover
-{
+.btn:hover {
     background-color: rgb(94, 32, 90);
     color: white;
 }
 
-.texto-landing{
-	font-size: 20px;
+.texto-landing {
+    font-size: 20px;
 }
 
-/*Logo*/
-/* Small. Above 34em (544px) */
-@media screen and (min-width: 34em) { 
-    .img-logo{
-        width: 200px;
+.jumbotron-aura {
+    border-style: solid;
+    background: rgba(204, 204, 204, 0.5);
+}
+
+@media only screen and (min-width : 320px) {
+    body {
+        background: url('../img/background-mobile-greyscale.png') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
 
-/* Medium. Above 48em (768px) */
-@media screen and (min-width: 48em) { 
-    .img-logo{
-        width: 200px;
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+    body {
+        background: url('../img/background-mobile-greyscale.png') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
 
-/* Large. Above 62em (992px) */
-@media screen and (min-width: 62em) { 
-    .img-logo{
-        width: 300px;
-    }
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    body {
+        background: url('../img/background-tablet-greyscale.png') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }    
 }
 
-/* Extra large. Above 75em (1200px) */
-@media screen and (min-width: 75em) { 
-    .img-logo{
-        width: 300px;
-    }
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    body {
+        background: url('../img/background-desktop-greyscale.jpg') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }    
 }
 
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    body {
+        background: url('../img/background-desktop-greyscale.jpg') no-repeat fixed;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }    
