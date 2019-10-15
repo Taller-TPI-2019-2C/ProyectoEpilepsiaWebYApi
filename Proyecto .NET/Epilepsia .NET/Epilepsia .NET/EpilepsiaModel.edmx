@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Epilepsia_TP_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TALLER_INTEGRADOR_TPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alerta">
           <Key>
             <PropertyRef Name="Id" />
@@ -59,9 +59,9 @@
           <Property Name="Apellido" Type="varchar(max)" />
           <Property Name="Email" Type="varchar(max)" Nullable="false" />
           <Property Name="Contrasenia" Type="varchar(max)" Nullable="false" />
-          <Property Name="Edad" Type="int" />
+          <Property Name="FechaNacimiento" Type="datetime" />
           <Property Name="Estado" Type="bit" />
-          <Property Name="Tipo_Usuario" Type="varchar(max)" />
+          <Property Name="Paciente" Type="bit" />
         </EntityType>
         <Association Name="FK_Registro_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
@@ -135,7 +135,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Epilepsia_TP_ModelStoreContainer">
+        <EntityContainer Name="TALLER_INTEGRADOR_TPModelStoreContainer">
           <EntitySet Name="Alerta" EntityType="Self.Alerta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registro_Episodio" EntityType="Self.Registro_Episodio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Telefono" EntityType="Self.Telefono" Schema="dbo" store:Type="Tables" />
@@ -171,7 +171,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Epilepsia_TP_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TALLER_INTEGRADOR_TPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Alerta">
           <Key>
             <PropertyRef Name="Id" />
@@ -232,9 +232,9 @@
           <Property Name="Apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Edad" Type="Int32" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
           <Property Name="Estado" Type="Boolean" />
-          <Property Name="Tipo_Usuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Paciente" Type="Boolean" />
           <NavigationProperty Name="Alerta" Relationship="Self.FK_Usuario_Paciente" FromRole="Usuario" ToRole="Alerta" />
           <NavigationProperty Name="Alerta1" Relationship="Self.FK_Usuario_Tutor" FromRole="Usuario" ToRole="Alerta" />
           <NavigationProperty Name="Registro_Episodio" Relationship="Self.FK_Registro_Usuario" FromRole="Usuario" ToRole="Registro_Episodio" />
@@ -351,9 +351,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Epilepsia_TP_ModelStoreContainer" CdmEntityContainer="Epilepsia_TP_Entities">
+        <EntityContainerMapping StorageEntityContainer="TALLER_INTEGRADOR_TPModelStoreContainer" CdmEntityContainer="Epilepsia_TP_Entities">
           <EntitySetMapping Name="Alerta">
-            <EntityTypeMapping TypeName="Epilepsia_TP_Model.Alerta">
+            <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Alerta">
               <MappingFragment StoreEntitySet="Alerta">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Tipo_Alerta" ColumnName="Tipo_Alerta" />
@@ -363,7 +363,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Registro_Episodio">
-            <EntityTypeMapping TypeName="Epilepsia_TP_Model.Registro_Episodio">
+            <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Registro_Episodio">
               <MappingFragment StoreEntitySet="Registro_Episodio">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -373,7 +373,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Telefono">
-            <EntityTypeMapping TypeName="Epilepsia_TP_Model.Telefono">
+            <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Telefono">
               <MappingFragment StoreEntitySet="Telefono">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
@@ -382,7 +382,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Token_Login">
-            <EntityTypeMapping TypeName="Epilepsia_TP_Model.Token_Login">
+            <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Token_Login">
               <MappingFragment StoreEntitySet="Token_Login">
                 <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
                 <ScalarProperty Name="Login_Api" ColumnName="Login_Api" />
@@ -390,7 +390,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tratamiento">
-            <EntityTypeMapping TypeName="Epilepsia_TP_Model.Tratamiento">
+            <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Tratamiento">
               <MappingFragment StoreEntitySet="Tratamiento">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
@@ -403,16 +403,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="Epilepsia_TP_Model.Usuario">
+            <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
-                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Tipo_Usuario" ColumnName="Tipo_Usuario" />
+                <ScalarProperty Name="Paciente" ColumnName="Paciente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -432,7 +432,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>

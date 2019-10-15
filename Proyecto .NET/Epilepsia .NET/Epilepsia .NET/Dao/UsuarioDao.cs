@@ -34,7 +34,7 @@ namespace Epilepsia.NET.Dao
 
         }
 
-        public static Usuario AgregarUsuario(FormRegistro formRegistro)
+        public static Usuario AgregarUsuario(FormUsuario formRegistro)
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
@@ -45,7 +45,8 @@ namespace Epilepsia.NET.Dao
                     usuario.Apellido = formRegistro.Apellido;
                     usuario.Email = formRegistro.Email;
                     usuario.Contrasenia = formRegistro.Contrasenia;
-                    usuario.Tipo_Usuario = formRegistro.Tipo_Paciente;
+                    usuario.Paciente = formRegistro.Paciente;
+                    usuario.FechaNacimiento = formRegistro.FechaNacimiento;
 
                     ctx.Usuario.Add(usuario);
                     ctx.SaveChanges();
@@ -67,14 +68,14 @@ namespace Epilepsia.NET.Dao
             return email;
         }
 
-        public static Usuario ActualizarDatos(FormEditarDatos formEditarDatos)
+        public static Usuario ActualizarDatos(FormUsuario form, long Id)
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                Usuario usuario = ctx.Usuario.FirstOrDefault(x => x.Id == formEditarDatos.Id);
-                usuario.Nombre = formEditarDatos.Nombre;
-                usuario.Apellido = formEditarDatos.Apellido;
-                usuario.Tipo_Usuario = formEditarDatos.Tipo_Usuario;
+                Usuario usuario = ctx.Usuario.FirstOrDefault(x => x.Id == Id);
+                usuario.Nombre = form.Nombre;
+                usuario.Apellido = form.Apellido;
+                usuario.Paciente = form.Paciente;
 
                 ctx.SaveChanges();
                 return usuario;

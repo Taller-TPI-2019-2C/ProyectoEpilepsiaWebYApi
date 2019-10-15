@@ -1,55 +1,60 @@
-﻿@model Epilepsia.NET.Models.FormRegistro
-
-@{
+﻿@{
     ViewBag.Title = "Registro";
+    bool form = (ViewBag.Form != null);
 }
 
 <div class="row justify-content-center">
     <div class="jumbotron col-xl-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 jumbotron-aura">
-        @using (@Html.BeginForm("Registro", "Home", FormMethod.Post))
-        {
+        <form id="formRegistro" action="~/Home/Registro" method="POST">
             @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" type="text" class="form-control" name="Nombre" @if (form) { <text>value="@ViewBag.Form.Nombre"</text>} required/>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input id="apellido" type="text" class="form-control" name="Apellido" @if (form) { <text>value="@ViewBag.Form.Apellido"</text> } required/>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input id="email" type="email" class="form-control" name="Email" @if (form) { <text>value="@ViewBag.Form.Email"</text> } required/>
+            </div>
+            <div class="form-group">
+                <label for="contrasenia">Contraseña:</label>
+                <input id="contrasenia" type="password" class="form-control" name="Contrasenia" />
+            </div>
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                <input id="fechaNacimiento" type="text" class="form-control" @if (form) { <text>value="@ViewBag.Form.fechaNacimiento"</text> } required/>
+            </div>
+            <div class="form-row">
+                <label>Tipo de cuenta:</label>
+                <div class="form-group">
+                    <input class="ml-2" id="paciente" type="radio" name="Paciente" value="true" />
+                    <label class="ml-1" for="paciente">Paciente</label>
+                </div>
+                <div class="form-group">
+                    <input class="ml-2" id="nopaciente" type="radio" name="Paciente" value="false" />
+                    <label class="ml-1" for="nopaciente">No Paciente</label>
+                </div>
+            </div>
 
-            @Html.LabelFor(model => model.Nombre)
-            <br />
-            @Html.TextBoxFor(model => model.Nombre, new { @placeholder = "Ej: Juan", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            <br />
-            @Html.LabelFor(model => model.Apellido)
-            <br />
-            @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
-            <br />
-            @Html.LabelFor(model => model.Email)
-            <br />
-            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            <br />
-            @Html.LabelFor(model => model.Contrasenia)
-            <br />
-            @Html.PasswordFor(model => model.Contrasenia, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Contrasenia, "", new { @class = "text-danger" })
-            <br />
-            @Html.LabelFor(model => model.Tipo_Paciente)
-            <br />
-            @Html.DropDownListFor(model => model.Tipo_Paciente,
-                         new SelectList(Model.Pacientes, "Value", "Text"), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Tipo_Paciente, "", new { @class = "text-danger" })
-            <br />
-            <br />
-
-            <div class="text-center">
+            <div class="form-group text-center">
                 <input type="submit" value="Registrarse" class="btn btn-primary" />
             </div>
 
-            if (ViewData["MensajeLogin"] != null)
+            @if (ViewData["MensajeLogin"] != null)
             {
-                <br />
-                <div class="alert alert-danger centermsg" role="alert">
-                    @ViewData["MensajeLogin"]
-                </div>
+                @ViewData["MensajeLogin"]
 
             }
-        }
+        </form>
     </div>
 </div>
+
+<script>
+    $(function(){
+        $("#fechaNacimiento").datepicker();
+        $("#formRegistro").validate();
+    })
+</script>

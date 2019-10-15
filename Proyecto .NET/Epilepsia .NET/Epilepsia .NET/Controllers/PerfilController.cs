@@ -12,21 +12,21 @@ namespace Epilepsia.NET.Controllers
     {
         public ActionResult Datos()
         {
-            FormEditarDatos formEditarDatos = UsuarioServicio.ObtenerDatosEditables(@Session["Usuario"] as Usuario);
-            return View(formEditarDatos);
+            ViewBag.Usuario = Session["Usuario"] as Usuario;
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Datos(FormEditarDatos formEditarDatos)
+        public ActionResult Datos(FormUsuario form, long Id)
         {
             Usuario usuarioEnSesion = Session["Usuario"] as Usuario;
-            if (!ModelState.IsValid || usuarioEnSesion.Id != formEditarDatos.Id)
+            if (!ModelState.IsValid || usuarioEnSesion.Id != Id)
             {
-                return View("Datos", formEditarDatos);
+                return View("Datos", form);
             }
 
-            Usuario usuarioActualizado = UsuarioServicio.ActualizarDatos(formEditarDatos);
+            Usuario usuarioActualizado = UsuarioServicio.ActualizarDatos(form,Id);
             Session["Usuario"] = usuarioActualizado;
 
             return RedirectToAction("Datos");
@@ -37,7 +37,7 @@ namespace Epilepsia.NET.Controllers
         {
             Usuario usuario = Session["Usuario"] as Usuario;
 
-            if (usuario.Tipo_Usuario == "Paciente")
+            if (usuario.Paciente == true)
             {
                 return View();
             }
@@ -50,7 +50,7 @@ namespace Epilepsia.NET.Controllers
         {
             Usuario usuario = Session["Usuario"] as Usuario;
 
-            if (usuario.Tipo_Usuario == "Tutor")
+            if (usuario.Paciente == false)
             {
                 return View();
             }

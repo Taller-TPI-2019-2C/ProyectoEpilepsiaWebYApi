@@ -125,3 +125,7 @@
         background-size: cover;
     }    
 }
+
+.error {
+    color: #ff0000
+}

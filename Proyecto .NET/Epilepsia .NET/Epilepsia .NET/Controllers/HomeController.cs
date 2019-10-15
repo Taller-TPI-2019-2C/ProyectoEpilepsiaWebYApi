@@ -60,7 +60,7 @@ namespace Epilepsia.NET.Controllers
 
         public ActionResult LogOut()
         {
-                Session.Clear();
+            Session.Clear();
             return RedirectToAction("Index");
         }
 
@@ -72,12 +72,11 @@ namespace Epilepsia.NET.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View(new FormRegistro());
+            return View();
         }
 
         [HttpPost]
-        [ActionName("Registro")]
-        public ActionResult ProcesarRegistro(FormRegistro formRegistro)
+        public ActionResult Registro(FormUsuario formRegistro)
         {
             if (UsuarioServicio.EmailEnUso(formRegistro.Email))
             {
@@ -86,7 +85,8 @@ namespace Epilepsia.NET.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View("Registro", formRegistro);
+                ViewBag.Form = formRegistro;
+                return View("Registro");
             }
 
             Usuario usuario = UsuarioServicio.AgregarUsuario(formRegistro);

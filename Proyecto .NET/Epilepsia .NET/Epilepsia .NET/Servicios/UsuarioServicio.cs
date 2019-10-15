@@ -23,19 +23,10 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.ObtenerUsuario(formLogin);
         }
 
-        public static FormEditarDatos ObtenerDatosEditables(Usuario usuario)
-        {
-            FormEditarDatos formEditarDatos = new FormEditarDatos();
-            formEditarDatos.Id = usuario.Id;
-            formEditarDatos.Nombre = usuario.Nombre;
-            formEditarDatos.Apellido = usuario.Apellido;
-            formEditarDatos.Tipo_Usuario = usuario.Tipo_Usuario;
-            return formEditarDatos;
-        }
 
-        public static Usuario ActualizarDatos(FormEditarDatos formEditarDatos)
+        public static Usuario ActualizarDatos(FormUsuario form, long Id)
         {
-            return UsuarioDao.ActualizarDatos(formEditarDatos);
+            return UsuarioDao.ActualizarDatos(form, Id);
         }
 
         public static bool EmailEnUso(string email)
@@ -43,7 +34,7 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.EmailEnUso(email);
         }
 
-        public static Usuario AgregarUsuario(FormRegistro formRegistro)
+        public static Usuario AgregarUsuario(FormUsuario formRegistro)
         {
             return UsuarioDao.AgregarUsuario(formRegistro);
         }
