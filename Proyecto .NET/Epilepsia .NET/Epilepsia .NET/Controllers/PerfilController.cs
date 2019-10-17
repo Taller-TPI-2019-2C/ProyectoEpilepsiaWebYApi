@@ -45,6 +45,13 @@ namespace Epilepsia.NET.Controllers
                 return RedirectToAction("Solicitudes");
         }
 
+        [HttpPost]
+        public ActionResult PersonasEnAlerta(string email)
+        {
+            ViewBag.ResultadoBusqueda = UsuarioServicio.AgregarPersonaEnAlerta(email);
+            return View();
+        }
+
         //Lista de pacientes que te quieren como tutor, aca aceptas o rechazas. (Si sos paciente no podes entrar)
         public ActionResult Solicitudes()
         {

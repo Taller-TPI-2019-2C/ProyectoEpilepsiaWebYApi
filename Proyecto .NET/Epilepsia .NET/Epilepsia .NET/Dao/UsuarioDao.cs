@@ -80,5 +80,18 @@ namespace Epilepsia.NET.Dao
                 return usuarioActualizado;
             }
         }
+
+        public static Usuario ObtenerUsuarioPorEmail(string email)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                return ctx.Usuario.FirstOrDefault(x => x.Email == email);
+            }
+        }
+
+        public static Usuario EnviarInvitacionParaTutor(Usuario usuario)
+        {
+            return usuario;
+        }
     }
 }
