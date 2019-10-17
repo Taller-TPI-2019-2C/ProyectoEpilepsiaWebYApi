@@ -36,9 +36,9 @@ CREATE TABLE Usuario(
 	Apellido VARCHAR(MAX),
 	Email VARCHAR(MAX) NOT NULL,
 	Contrasenia VARCHAR(MAX) NOT NULL,
-	Edad INTEGER,	
+	FechaNacimiento DATETIME,	
 	Estado BIT DEFAULT 'FALSE',
-	Tipo_Usuario VARCHAR(MAX) DEFAULT 'PACIENTE',
+	Paciente BIT DEFAULT 0,
 	CONSTRAINT PK_Usuario_Id PRIMARY KEY (Id)
 )
 GO
