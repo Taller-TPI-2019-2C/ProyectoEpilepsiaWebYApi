@@ -68,17 +68,16 @@ namespace Epilepsia.NET.Dao
             return email;
         }
 
-        public static Usuario ActualizarDatos(FormUsuario form, long Id)
+        public static Usuario ActualizarDatos(Usuario usuarioActualizado)
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                Usuario usuario = ctx.Usuario.FirstOrDefault(x => x.Id == Id);
-                usuario.Nombre = form.Nombre;
-                usuario.Apellido = form.Apellido;
-                usuario.Paciente = form.Paciente;
+                Usuario usuarioAntiguo = ctx.Usuario.FirstOrDefault(x => x.Id == usuarioActualizado.Id);
+                usuarioAntiguo.Nombre = usuarioActualizado.Apellido;
+                usuarioAntiguo.Contrasenia = usuarioActualizado.Contrasenia;
 
                 ctx.SaveChanges();
-                return usuario;
+                return usuarioActualizado;
             }
         }
     }

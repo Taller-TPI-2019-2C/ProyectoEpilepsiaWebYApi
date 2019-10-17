@@ -9,14 +9,7 @@ using System.Web.Mvc;
 namespace Epilepsia.NET.Controllers
 {
     public class HomeController : Controller
-    {
-        //Esto esta solo para dar info para que arranquemos. Después se debe borrar
-        public ActionResult Leeme()
-        {
-            ViewBag.CantidadDeUsuariosRegistrados = UsuarioServicio.ObtenerCantidadDeUsuariosRegistrados();
-            return View();
-        }
-        
+    {  
         // GET: Home
         public ActionResult Index()
         {
@@ -26,7 +19,7 @@ namespace Epilepsia.NET.Controllers
         //Se debería poder acceder solo cuando el user no esta logeado. Debe incluír login con Google
         public ActionResult Login()
         {
-            if (Session["UsuarioId"] != null)
+            if (Session["Usuario"] != null)
             {
                 return RedirectToAction("Index", "Home");
             }

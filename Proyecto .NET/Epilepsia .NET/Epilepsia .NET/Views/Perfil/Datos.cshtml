@@ -1,7 +1,6 @@
-﻿@model Epilepsia.NET.Models.FormEditarDatos
-
-@{
+﻿@{
     ViewBag.Title = "Datos";
+    Usuario usuario = ViewBag.Usuario;
 }
 
 <div class="row justify-content-center">
@@ -10,26 +9,36 @@
         {
             @Html.AntiForgeryToken()
 
-            @Html.HiddenFor(model => model.Id)
-                       
-            @Html.LabelFor(model => model.Nombre)
-            <br />
-            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            <br />
-            @Html.LabelFor(model => model.Apellido)
-            <br />
-            @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
-            <br />
-            <br />
-            @Html.LabelFor(model => model.Tipo_Usuario)
-            <br />
-            @Html.DropDownListFor(model => model.Tipo_Usuario,
-                         new SelectList(Model.Pacientes, "Value", "Text"), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Tipo_Usuario, "", new { @class = "text-danger" })
-            <br />
-            <br />
+            <input type="hidden" name="Id" value="@usuario.Id" />
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" type="text" class="form-control" name="Nombre" value="@usuario.Nombre" required />
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input id="apellido" type="text" class="form-control" name="Apellido" value="@usuario.Apellido" required />
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-Mail:</label>
+                <input id="email" type="text" class="form-control" name="Email" value="@usuario.Email" required disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña:</label>
+                <input id="contraseña" type="password" class="form-control" name="Contrasenia" value="@usuario.Contrasenia" required />
+            </div>
+
+            if (usuario.Paciente == true)
+            {
+                <input type="hidden" name="Paciente" value="true" />
+            }
+            else
+            {
+                <input type="hidden" name="Paciente" value="false" />
+            }
 
             <input type="submit" value="Guardar" class="btn color-aura-dark" />
         }

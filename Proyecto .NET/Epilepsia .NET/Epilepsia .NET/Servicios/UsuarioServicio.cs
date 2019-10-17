@@ -24,9 +24,9 @@ namespace Epilepsia.NET.Servicios
         }
 
 
-        public static Usuario ActualizarDatos(FormUsuario form, long Id)
+        public static Usuario ActualizarDatos(Usuario usuario)
         {
-            return UsuarioDao.ActualizarDatos(form, Id);
+            return UsuarioDao.ActualizarDatos(usuario);
         }
 
         public static bool EmailEnUso(string email)

@@ -18,15 +18,15 @@ namespace Epilepsia.NET.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Datos(FormUsuario form, long Id)
+        public ActionResult Datos(Usuario usuario)
         {
             Usuario usuarioEnSesion = Session["Usuario"] as Usuario;
-            if (!ModelState.IsValid || usuarioEnSesion.Id != Id)
+            if (!ModelState.IsValid || usuarioEnSesion.Id != usuario.Id)
             {
-                return View("Datos", form);
+                return View("Datos");
             }
 
-            Usuario usuarioActualizado = UsuarioServicio.ActualizarDatos(form,Id);
+            Usuario usuarioActualizado = UsuarioServicio.ActualizarDatos(usuario);
             Session["Usuario"] = usuarioActualizado;
 
             return RedirectToAction("Datos");
