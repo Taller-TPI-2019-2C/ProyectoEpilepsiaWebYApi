@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Personas";
+    Usuario user = ViewBag.Usuario;
+}
+
+<h2>Personas</h2>
+
+@if(user.Paciente == true) { 
+<div class="text-right">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalNuevoTutor"><i class="fa fa-user-plus"></i>Agregar Tutor</button>
+</div>
+
+<div class="modal" id="modalNuevoTutor">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Nuevo Tutor</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-6 text-center">
+                        <input type="radio" id="CuentaExistente" value="true" name="tipo" />
+                        <label for="CuentaExistente">Cuenta Existente</label>
+                    </div>
+                    <div class="form-group col-6 text-center">
+                        <input type="radio" id="CuentaNueva" value="true" name="tipo" />
+                        <label for="CuentaNueva">Invitar Usuario</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mailInvitacion">E-mail del tutor</label>
+                    <input type="text" class="form-control" name="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="error" id="errorNuevoTutor"></label>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer text-right">
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal">Agregar</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Email</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (user.Paciente == true)
+        {
+            foreach (Usuario u in user.Usuario1)
+            {
+                <tr>
+                    <td>@u.Nombre</td>
+                    <td>@u.Apellido</td>
+                    <td>@u.Email</td>
+                </tr>
+            }
+        }
+        else
+        {
+            foreach (Usuario u in user.Usuario2)
+            {
+                <tr>
+                    <td>@u.Nombre</td>
+                    <td>@u.Apellido</td>
+                    <td>@u.Email</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

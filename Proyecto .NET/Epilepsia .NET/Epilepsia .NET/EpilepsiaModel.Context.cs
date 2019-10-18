@@ -31,5 +31,6 @@ namespace Epilepsia.NET
         public virtual DbSet<Token_Login> Token_Login { get; set; }
         public virtual DbSet<Tratamiento> Tratamiento { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<TokenTutor> TokenTutor { get; set; }
     }
 }

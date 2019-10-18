@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Micuenta";
+    Usuario user = ViewBag.Usuario;
+}
+
+<h2>Mi cuenta</h2>
+
+<div class="row justify-content-center">
+    <div class="jumbotron col-xl-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 jumbotron-aura">
+        @using (@Html.BeginForm("Datos", "Perfil", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="Id" value="@user.Id" />
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" type="text" class="form-control" name="Nombre" value="@user.Nombre" required />
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input id="apellido" type="text" class="form-control" name="Apellido" value="@user.Apellido" required />
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-Mail:</label>
+                <input id="email" type="text" class="form-control" name="Email" value="@user.Email" required disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña Actual:</label>
+                <input id="contraseña" type="password" class="form-control" name="Contrasenia" required />
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Nueva contraseña:</label>
+                <input id="contraseña" type="password" class="form-control" name="nuevaContrasenia"/>
+            </div>
+
+            if (user.Paciente == true)
+            {
+                <input type="hidden" name="Paciente" value="true" />
+            }
+            else
+            {
+                <input type="hidden" name="Paciente" value="false" />
+            }
+
+            <input type="submit" value="Guardar" class="btn color-aura-dark" />
+        }
+    </div>
+</div>

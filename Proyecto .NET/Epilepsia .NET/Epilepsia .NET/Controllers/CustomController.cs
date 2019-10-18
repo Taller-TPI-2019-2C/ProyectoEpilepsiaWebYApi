@@ -26,6 +26,10 @@ namespace Epilepsia.NET.Controllers
                     new { ReturnUrl = urlIntentada });
                 filterContext.Result = Redirect(urlNueva);
             }
+            else
+            {
+                ViewBag.Usuario = Session["Usuario"];
+            }
         }
     }
 }

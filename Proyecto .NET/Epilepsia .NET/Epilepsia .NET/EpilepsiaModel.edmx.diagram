@@ -17,6 +17,9 @@
         <AssociationConnector Association="TALLER_INTEGRADOR_TPModel.FK_Telefono_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="TALLER_INTEGRADOR_TPModel.FK_Token_Login_Id" ManuallyRouted="false" />
         <AssociationConnector Association="TALLER_INTEGRADOR_TPModel.FK_Tratamiento_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="TALLER_INTEGRADOR_TPModel.TutorPaciente" />
+        <EntityTypeShape EntityType="TALLER_INTEGRADOR_TPModel.TokenTutor" Width="1.5" PointX="3.25" PointY="15.5" />
+        <AssociationConnector Association="TALLER_INTEGRADOR_TPModel.FK_TokenTutorUsuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

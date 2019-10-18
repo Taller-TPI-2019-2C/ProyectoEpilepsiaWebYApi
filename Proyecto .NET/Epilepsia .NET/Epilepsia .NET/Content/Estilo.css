@@ -129,3 +129,10 @@
 .error {
     color: #ff0000
 }
+
+#load {
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    z-index: 1100;
+}

@@ -22,6 +22,8 @@ namespace Epilepsia.NET
             this.Registro_Episodio = new HashSet<Registro_Episodio>();
             this.Telefono = new HashSet<Telefono>();
             this.Tratamiento = new HashSet<Tratamiento>();
+            this.Usuario1 = new HashSet<Usuario>();
+            this.Usuario2 = new HashSet<Usuario>();
         }
     
         public long Id { get; set; }
@@ -44,5 +46,10 @@ namespace Epilepsia.NET
         public virtual Token_Login Token_Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tratamiento> Tratamiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuario2 { get; set; }
+        public virtual TokenTutor TokenTutor { get; set; }
     }
 }

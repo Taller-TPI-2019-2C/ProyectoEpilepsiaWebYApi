@@ -135,6 +135,21 @@ CREATE TABLE Tratamiento(
 )
 GO
 
+CREATE TABLE TutorPaciente(
+TutorID BIGINT,
+PacienteID BIGINT,
+CONSTRAINT PK_TutorPaciente PRIMARY KEY(TutorID,PacienteID),
+CONSTRAINT FK_Tutor FOREIGN KEY (TutorID) REFERENCES Usuario(Id),
+CONSTRAINT FK_Paciente FOREIGN KEY (PacienteID) REFERENCES Usuario(Id)
+)
+GO
+
+CREATE TABLE TokenTutor(
+TutorID BIGINT,
+API_Token VARCHAR(MAX) NOT NULL,
+CONSTRAINT PK_TokenTutor PRIMARY KEY(TutorID),
+CONSTRAINT FK_TokenTutorUsuario FOREIGN KEY (TutorID) REFERENCES Usuario(Id),
+)
 
 
 

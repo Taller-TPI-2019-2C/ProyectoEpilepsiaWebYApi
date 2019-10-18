@@ -19,12 +19,9 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44397</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>
-    </IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>
-    </IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -246,6 +243,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Views\Panel\Personas.js" />
     <Content Include="Web.config" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
@@ -271,6 +269,7 @@
     <Compile Include="Controllers\CustomController.cs" />
     <Compile Include="Controllers\EditarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PanelController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />
     <Compile Include="EpilepsiaModel.Context.cs">
@@ -300,6 +299,9 @@
     </Compile>
     <Compile Include="Servicios\UsuarioServicio.cs" />
     <Compile Include="Telefono.cs">
+      <DependentUpon>EpilepsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TokenTutor.cs">
       <DependentUpon>EpilepsiaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Token_Login.cs">
@@ -336,6 +338,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Panel\Personas.cshtml" />
+    <Content Include="Views\Panel\Micuenta.cshtml" />
+    <Content Include="Views\Shared\_LoadPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

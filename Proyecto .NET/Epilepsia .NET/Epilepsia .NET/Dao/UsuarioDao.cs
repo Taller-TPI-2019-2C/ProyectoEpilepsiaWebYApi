@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 
 namespace Epilepsia.NET.Dao
@@ -21,7 +22,11 @@ namespace Epilepsia.NET.Dao
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                return ctx.Usuario.FirstOrDefault(x => x.Email == formLogin.Email && x.Contrasenia == formLogin.Contrasenia);   
+                Usuario u = ctx.Usuario
+                    .Include(x => x.Usuario1)
+                    .Include(x => x.Usuario2)
+                    .FirstOrDefault(x => x.Email == formLogin.Email && x.Contrasenia == formLogin.Contrasenia);
+                return u;
             }
         }
 
