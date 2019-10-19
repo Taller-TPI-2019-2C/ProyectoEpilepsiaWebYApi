@@ -19,12 +19,9 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44397</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>
-    </IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>
-    </IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -269,6 +266,7 @@
       <DependentUpon>EpilepsiaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\CustomController.cs" />
     <Compile Include="Controllers\EditarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -294,6 +292,7 @@
     </Compile>
     <Compile Include="Models\FormLogin.cs" />
     <Compile Include="Models\FormUsuario.cs" />
+    <Compile Include="Models\Util\LogManager.cs" />
     <Compile Include="Models\Util\TipoUsuarioPermitidoAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro_Episodio.cs">
@@ -349,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Api\" />
     <Folder Include="Views\Custom\" />
     <Folder Include="Views\Paciente\" />
   </ItemGroup>
