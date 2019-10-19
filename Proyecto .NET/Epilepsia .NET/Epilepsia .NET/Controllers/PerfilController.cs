@@ -48,7 +48,7 @@ namespace Epilepsia.NET.Controllers
         [HttpPost]
         public ActionResult PersonasEnAlerta(string email)
         {
-            ViewBag.ResultadoBusqueda = UsuarioServicio.AgregarPersonaEnAlerta(email);
+            ViewBag.ResultadoBusqueda = UsuarioServicio.AgregarPersonaEnAlerta(Session["Usuario"] as Usuario, email);
             return View();
         }
 
