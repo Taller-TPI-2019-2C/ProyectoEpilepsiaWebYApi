@@ -58,7 +58,7 @@
                 <!-- En pantalla normal -->
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item d-none d-md-block">
-                        <a class="acceder-link" href="/Perfil/Datos">Mi cuenta</a>
+                        <a class="acceder-link" href="/Panel/MiCuenta">Mi cuenta</a>
                     </li>
                     <li class="nav-item d-none d-md-block">
                         <a class="acceder-link" href="/Home/Logout">Cerrar sesión</a>
@@ -67,7 +67,7 @@
                 <!-- En pantalla chica -->
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0 d-lg-none d-md-none">
                     <li class="nav-item">
-                        <a class="acceder-link" href="/Perfil/Datos">Mi cuenta</a>
+                        <a class="acceder-link" href="/Panel/MiCuenta">Mi cuenta</a>
                     </li>
                     <li class="nav-item">
                         <a class="acceder-link" href="/Home/Logout">Cerrar sesión</a>
@@ -78,13 +78,7 @@
     </nav>
 
     <div class="container-fluid body-content">
-        @if (usuario != null)
-        {
-            <text>Hola @usuario.Nombre @usuario.Apellido! (Esto esta aca temporalmente)</text>
-        }
         @RenderBody()
-    </div>
-
-    
+    </div>    
 </body>
 </html>

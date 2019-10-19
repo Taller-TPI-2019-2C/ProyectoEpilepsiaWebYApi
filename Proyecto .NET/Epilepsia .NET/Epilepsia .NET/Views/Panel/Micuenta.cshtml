@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Micuenta";
+    ViewBag.Title = "Mi cuenta";
     Usuario user = ViewBag.Usuario;
 }
 
@@ -8,7 +8,7 @@
 
 <div class="row justify-content-center">
     <div class="jumbotron col-xl-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 jumbotron-aura">
-        @using (@Html.BeginForm("Datos", "Perfil", FormMethod.Post, new { @class = "form-group" }))
+        @using (@Html.BeginForm("MiCuenta", "Panel", FormMethod.Post, new { @class = "form-group" }))
         {
             @Html.AntiForgeryToken()
 
@@ -26,17 +26,12 @@
 
             <div class="form-group">
                 <label for="email">E-Mail:</label>
-                <input id="email" type="text" class="form-control" name="Email" value="@user.Email" required disabled />
+                <input id="email" type="text" class="form-control" name="Email" value="@user.Email" required  />
             </div>
 
             <div class="form-group">
-                <label for="contraseña">Contraseña Actual:</label>
-                <input id="contraseña" type="password" class="form-control" name="Contrasenia" required />
-            </div>
-
-            <div class="form-group">
-                <label for="contraseña">Nueva contraseña:</label>
-                <input id="contraseña" type="password" class="form-control" name="nuevaContrasenia"/>
+                <label for="contraseña">Contraseña:</label>
+                <input id="contraseña" type="password" class="form-control" name="Contrasenia" value="@user.Contrasenia" required />
             </div>
 
             if (user.Paciente == true)

@@ -23,6 +23,10 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.ObtenerUsuario(formLogin);
         }
 
+        public static Usuario ObtenerUsuarioActualizado(Usuario usuario)
+        {
+            return UsuarioDao.ObtenerUsuarioActualizado(usuario);
+        }
 
         public static Usuario ActualizarDatos(Usuario usuario)
         {
@@ -39,17 +43,13 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.AgregarUsuario(formRegistro);
         }
 
-        public static string AgregarPersonaEnAlerta(Usuario usuarioEnSesion, string emailBuscado)
+        public static Usuario AgregarTutor(Usuario usuarioEnSesion, string emailBuscado)
         {
             Usuario usuarioBuscado = UsuarioDao.ObtenerUsuarioPorEmail(emailBuscado);
 
-            if (usuarioBuscado == null) return "No se pudo encontrar al usuario";
+            if (usuarioBuscado == null || usuarioBuscado.Paciente == true) return null;
 
-            if (usuarioBuscado.Paciente == true) return "Esta persona no ha configurado su cuenta como tutor";
-
-            UsuarioDao.EnviarInvitacionParaTutor(usuarioEnSesion, usuarioBuscado);
-
-            return "Esta cuenta ha sido agregada";
+            return UsuarioDao.AgregarTutor(usuarioEnSesion, usuarioBuscado);
         }
 
         public static string AgregarEarlyAdopter(string email)

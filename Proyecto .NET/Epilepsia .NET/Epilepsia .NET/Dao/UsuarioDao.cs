@@ -94,19 +94,28 @@ namespace Epilepsia.NET.Dao
             }
         }
 
-        //Usuario2 en un user de tipo Paciente contiene sus tutores
-        public static Usuario EnviarInvitacionParaTutor(Usuario usuarioEnSesion, Usuario usuarioBuscado)
+        //Usuario1 en un user de tipo Paciente contiene sus tutores
+        public static Usuario AgregarTutor(Usuario usuarioEnSesion, Usuario usuarioBuscado)
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                Usuario usuarioActualizado = ctx.Usuario.Find(usuarioEnSesion.Id);
+                Usuario usuarioActualizado = ctx.Usuario.Include("Usuario1").Include("Usuario2")
+                    .FirstOrDefault(x => x.Id == usuarioEnSesion.Id);
 
                 ctx.Usuario.Attach(usuarioBuscado);
-                usuarioActualizado.Usuario2.Add(usuarioBuscado);               
+                usuarioActualizado.Usuario1.Add(usuarioBuscado);
 
                 ctx.SaveChanges();
+                return usuarioActualizado;
             }
-            return usuarioEnSesion;
+        }
+
+        public static Usuario ObtenerUsuarioActualizado(Usuario usuario)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                return ctx.Usuario.Find(usuario.Id);
+            }
         }
     }
 }
