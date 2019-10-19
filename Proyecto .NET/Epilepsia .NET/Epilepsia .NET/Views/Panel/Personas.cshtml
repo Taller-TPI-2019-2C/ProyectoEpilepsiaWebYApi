@@ -4,8 +4,6 @@
     Usuario user = ViewBag.Usuario;
 }
 
-<h2>Personas</h2>
-
 @if(user.Paciente == true) { 
 
 <div class="row justify-content-center">
@@ -69,6 +67,14 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="jumbotron-aura-no-border col-6 text-center px-0 mx-0">
+            @if (user.Paciente == true)
+            {
+                <div>Estas personas recibiran alertas cuando tengas un episodio...</div>
+            }
+            else
+            {
+                <div>Estas personas te enviaran alertas cuando tengan un episodio...</div>
+            }
             <table class="table ">
                 <thead>
                     <tr class="color-aura-dark text-white">
