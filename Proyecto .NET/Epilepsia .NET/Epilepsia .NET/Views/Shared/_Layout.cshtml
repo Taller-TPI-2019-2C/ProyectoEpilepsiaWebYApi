@@ -27,9 +27,20 @@
                 </a>
             </li>
         </ul>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- Colapsable solo para logearte. Si estas logeado ves los botones -->
+        @if (usuario == null)
+        {
+            <button class="navbar-toggler visible-xs" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        }
+        else if(((RazorView)ViewContext.View).ViewPath != "~/Views/Home/Index.cshtml")
+        {
+            <button class="btn btn-success navbar d-xl-none d-lg-none visible-md visible-xs visible-sm" type="button" onclick="window.history.back();">
+                <span>&larr;</span>
+            </button>
+        }
+
         <!-- Debo arreglar la chanchada de abajo luego, no debería poner dos veces lo mismo -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @if (usuario == null)
@@ -64,18 +75,6 @@
                         <a class="acceder-link" href="/Panel/MiCuenta">Mi cuenta</a>
                     </li>
                     <li class="nav-item d-none d-md-block">
-                        <a class="acceder-link" href="/Home/Logout">Cerrar sesión</a>
-                    </li>
-                </ul>
-                <!-- En pantalla chica -->
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0 d-lg-none d-md-none">
-                    <li class="nav-item">
-                        <a class="acceder-link" href="/Panel/Personas">Conexiones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="acceder-link" href="/Panel/MiCuenta">Mi cuenta</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="acceder-link" href="/Home/Logout">Cerrar sesión</a>
                     </li>
                 </ul>

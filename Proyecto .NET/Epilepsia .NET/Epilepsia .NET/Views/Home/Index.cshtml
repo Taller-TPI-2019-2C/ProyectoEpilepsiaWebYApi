@@ -6,18 +6,34 @@
 <div class="contenido color-bg-light">
     <div class="container-fluid">
         <div class="row">
-            <section class="col-md-6 offset-md-6">
-                <br>
-                <p class="text-left texto-landing"><b>Una aplicación para dispositivos móviles orientada a pacientes de epilepsia. Detectamos tus episodios durante el sueño y emitimos una alerta a personas de tu confianza para que nunca estes solo.</b></p>
-                <br /><br /><br />
+            <section class="col-md-6 offset-md-6 col-sm-12 col-xs-12">
                 @if (Session["Usuario"] == null)
                 {
+                    <br>
+                    <p class="text-left texto-landing"><b>Una aplicación para dispositivos móviles orientada a pacientes de epilepsia. Detectamos tus episodios durante el sueño y emitimos una alerta a personas de tu confianza para que nunca estes solo.</b></p>
+                    <br /><br /><br />
                     <form class="form-row" method="post" action="/Home/AgregarEarlyAdopter">
                         <div class="form-group mb-0 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 pr-0 pl-0 w-100">
                             <input type="text" class="form-control text-xl-left text-lg-left text-center" id="Email" name="Email" placeholder="Ingresa tu correo electrónico">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2 col pr-0 pl-0 w-100">Obtener información</button>
                     </form>
+                }
+                else
+                {
+                    <div class="d-xl-none d-lg-none">
+                        <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
+                            <a class="btn btn-secondary" href="/Panel/Personas">Conexiones</a>
+                        </div>
+
+                        <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
+                            <a class="btn btn-secondary" href="/Panel/MiCuenta">Mi cuenta</a>
+                        </div>
+
+                        <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
+                            <a class="btn btn-secondary" href="/Home/Logout">Cerrar sesión</a>
+                        </div>
+                    </div>
                 }
             </section>
         </div>
