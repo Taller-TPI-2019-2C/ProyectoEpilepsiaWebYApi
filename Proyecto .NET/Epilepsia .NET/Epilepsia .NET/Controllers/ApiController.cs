@@ -6,9 +6,23 @@ using System.Web.Mvc;
 
 namespace Epilepsia.NET.Controllers
 {
+    public class AllowCrossSiteJsonAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (filterContext.RequestContext.HttpContext.Request.HttpMethod == "POST") { 
+                filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Origin", "*");
+                base.OnActionExecuting(filterContext);
+            }
+            else
+            {
+                filterContext.Result = new EmptyResult();
+            }
+        }
+    }
     public class ApiController : Controller
     {
-        [HttpPost]
+        [AllowCrossSiteJson]
         public ActionResult Login(string usuario, string contrasenia, string token)
         {
             dynamic ret;
@@ -21,19 +35,25 @@ namespace Epilepsia.NET.Controllers
                     {
                         ret = new { msg = "Usuario o contraseña incorrecto" };
                     }
-                    else if (u.Paciente != false)
+                    else if (u.Paciente == false)
                     {
-                        if (!ctx.TokenTutor.Any(t => t.TutorID == u.Id && t.API_Token == token))
+                        if (u.TokenTutor == null)
                         {
                             TokenTutor nuevoToken = new TokenTutor();
                             nuevoToken.TutorID = u.Id;
                             nuevoToken.API_Token = token;
                             ctx.TokenTutor.Add(nuevoToken);
+                            ctx.SaveChanges();
+                        }
+                        else
+                        {
+                            u.TokenTutor.API_Token = token;
+                            ctx.SaveChanges();
                         }
                         ret = new { msg = "ok",
                             id = u.Id,
                             nombre = u.Nombre + " " + u.Apellido,
-                            pacientes = u.Usuario2.Select(x => new { id = u.Id, nombre = u.Nombre + " " + u.Apellido }).ToArray()
+                            pacientes = u.Usuario2.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray()
                         };
                     }
                     else
@@ -43,6 +63,7 @@ namespace Epilepsia.NET.Controllers
                             msg = "ok",
                             id = u.Id,
                             nombre = u.Nombre + " " + u.Apellido,
+                            tutores = u.Usuario1.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray()
                         };
                     }
                 }
@@ -54,7 +75,7 @@ namespace Epilepsia.NET.Controllers
             return Json(ret);
         }
 
-        [HttpPost]
+        [AllowCrossSiteJson]
         public ActionResult MandarAlerta(long pacienteId, int tipo)
         {
             //TO DO: mandar notificacion a la api
