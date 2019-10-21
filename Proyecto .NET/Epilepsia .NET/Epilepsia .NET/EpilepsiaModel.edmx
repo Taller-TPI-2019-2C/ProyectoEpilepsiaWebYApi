@@ -77,6 +77,7 @@
           <Property Name="FechaNacimiento" Type="datetime" />
           <Property Name="Estado" Type="bit" />
           <Property Name="Paciente" Type="bit" />
+          <Property Name="Token" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_Paciente">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
@@ -308,6 +309,7 @@
           <NavigationProperty Name="Usuario1" Relationship="TALLER_INTEGRADOR_TPModel.TutorPaciente" FromRole="Usuario" ToRole="Usuario1" />
           <NavigationProperty Name="Usuario2" Relationship="TALLER_INTEGRADOR_TPModel.TutorPaciente" FromRole="Usuario1" ToRole="Usuario" />
           <NavigationProperty Name="TokenTutor" Relationship="TALLER_INTEGRADOR_TPModel.FK_TokenTutorUsuario" FromRole="Usuario" ToRole="TokenTutor" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Usuario_Paciente">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
@@ -505,6 +507,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />

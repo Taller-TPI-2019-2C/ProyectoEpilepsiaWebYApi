@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Epilepsia.NET.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -98,9 +99,36 @@ namespace Epilepsia.NET.Controllers
             catch (Exception)
             {
                 return Json(new { msg = "error" });
+            }           
+        }
+
+        [AllowCrossSiteJson]
+        public ActionResult Registro(string email, string contrasenia, string token)
+        {
+            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(contrasenia) || String.IsNullOrEmpty(token))
+            {
+                return Json(new { msg = "Complete todos los campos" });
             }
-            
-            
+
+            if (UsuarioServicio.EmailEnUso(email))
+            {
+                return Json(new { msg = "El email esta en uso"});
+            }
+
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                Usuario u = new Usuario();
+                u.Nombre = "NombreFromAPI";
+                u.Apellido = "ApellidoFromAPI";
+                u.FechaNacimiento = DateTime.Now;
+                u.Email = email;
+                u.Contrasenia = contrasenia;
+                u.Token = token;
+
+                ctx.Usuario.Add(u);
+                ctx.SaveChanges();
+            }
+            return Json(new { msg = "Usuario registrado" });
         }
     }
 }

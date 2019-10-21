@@ -34,6 +34,7 @@ namespace Epilepsia.NET
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public Nullable<bool> Estado { get; set; }
         public Nullable<bool> Paciente { get; set; }
+        public string Token { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Alerta> Alerta { get; set; }
