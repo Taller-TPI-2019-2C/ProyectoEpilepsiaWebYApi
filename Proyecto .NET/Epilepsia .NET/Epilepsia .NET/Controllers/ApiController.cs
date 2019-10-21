@@ -88,7 +88,7 @@ namespace Epilepsia.NET.Controllers
                     LogManager.Escribir("Recibido señal del paciente " + u.Nombre + " " + u.Apellido + " del tipo "+ tipo, ruta);
                     foreach (Usuario tutor in u.Usuario1)
                     {
-                        if (!String.IsNullOrEmpty(tutor.TokenTutor.API_Token)) { 
+                        if (!String.IsNullOrEmpty(tutor.TokenTutor?.API_Token)) { 
                             LogManager.Escribir("--> Enviado al tutor " + tutor.Nombre + " " + tutor.Apellido + " (Token: " + tutor.TokenTutor.API_Token + ")",ruta);
                         }
                     }
