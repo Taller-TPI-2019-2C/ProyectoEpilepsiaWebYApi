@@ -124,8 +124,8 @@ namespace Epilepsia.NET.Controllers
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
                 Usuario u = new Usuario();
-                u.Nombre = "NombreFromAPI";
-                u.Apellido = "ApellidoFromAPI";
+                u.Nombre = nombre;
+                u.Apellido = apellido;
                 u.FechaNacimiento = DateTime.Now;
                 u.Email = email;
                 u.Contrasenia = contrasenia;
