@@ -66,24 +66,20 @@ namespace Epilepsia.NET.Servicios
         }
 
         //Esto no ira aca seguramente, aun no se bien como funciona el método. Sería parte de la API
-        public static bool EnviarNotificacionHaciaCelular(string token)
+        public static bool EnviarNotificacionHaciaCelular(string token, string value)
         {
             try
             {
-                var applicationID = "AIzaSyAEFq2sDmzIqtJdomO69ecmyuxmaYpgdgE";
-                var SENDER_ID = "mitrapharmaencasa";
-                var tokenHardcodeado = "dgoOi5eS8as:APA91bF-WNuKOurr8cqo61CnDNuIhyVnAK2hntG4mm6LfXxOr-b2PpTpNO9nGy2r6Vi8rX463vGWfTW7_JDrnLk7p8aOF-j7YpVDLMsKJMQgPsSpHGfN6_pKzhzpvNG-PhPOkk0vd-cy";
-                var value = "mensaje de prueba";
-
-
+                var applicationID = "AIzaSyA7l-YQmWastGC7A__Up-taR8fGtSs9nG8";
+                var SENDER_ID = "auraapp-d137c";
                 WebRequest tRequest;
-                tRequest = WebRequest.Create("https://android.googleapis.com/gcm/send");
+                tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
                 tRequest.Method = "post";
                 tRequest.ContentType = " application/x-www-form-urlencoded;charset=UTF-8";
                 tRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
 
                 tRequest.Headers.Add(string.Format("Sender: id={0}", SENDER_ID));
-                string postData = "collapse_key=score_update&time_to_live=108&delay_while_idle=1&data.message=" + value + "&registration_id=" + tokenHardcodeado + "";
+                string postData = "collapse_key=score_update&time_to_live=108&delay_while_idle=1&data.message=" + value + "&registration_id=" + token + "";
                 Console.WriteLine(postData);
                 Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
                 tRequest.ContentLength = byteArray.Length;

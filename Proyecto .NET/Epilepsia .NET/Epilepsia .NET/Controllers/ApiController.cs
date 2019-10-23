@@ -89,8 +89,10 @@ namespace Epilepsia.NET.Controllers
                     LogManager.Escribir("Recibido señal del paciente " + u.Nombre + " " + u.Apellido + " del tipo "+ tipo, ruta);
                     foreach (Usuario tutor in u.Usuario1)
                     {
-                        if (!String.IsNullOrEmpty(tutor.TokenTutor?.API_Token)) { 
-                            LogManager.Escribir("--> Enviado al tutor " + tutor.Nombre + " " + tutor.Apellido + " (Token: " + tutor.TokenTutor.API_Token + ")",ruta);
+                        if (!String.IsNullOrEmpty(tutor.Token)) {
+                            string mensaje = "recibido alerta de tipo " + tipo + " del paciente " + u.Nombre + " " + u.Apellido;
+                            UsuarioServicio.EnviarNotificacionHaciaCelular(tutor.Token,mensaje);
+                            LogManager.Escribir("--> Enviado al tutor " + tutor.Nombre + " " + tutor.Apellido + " (Token: " + tutor.Token + ")",ruta);
                         }
                     }
                 }
@@ -103,9 +105,13 @@ namespace Epilepsia.NET.Controllers
         }
 
         [AllowCrossSiteJson]
-        public ActionResult Registro(string email, string contrasenia, string token)
+        public ActionResult Registro(string email, string contrasenia, string nombre, string apellido, string token)
         {
-            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(contrasenia) || String.IsNullOrEmpty(token))
+            if (String.IsNullOrEmpty(email) ||
+                String.IsNullOrEmpty(contrasenia) ||
+                String.IsNullOrEmpty(token) ||
+                String.IsNullOrEmpty(nombre) ||
+                String.IsNullOrEmpty(apellido))
             {
                 return Json(new { msg = "Complete todos los campos" });
             }
