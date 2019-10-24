@@ -36,19 +36,10 @@ namespace Epilepsia.NET.Controllers
                     {
                         ret = new { msg = "Usuario o contraseña incorrecto" };
                     }
-                    else if (u.Paciente == false)
+                    else
                     {
-                        if (u.TokenTutor == null)
-                        {
-                            TokenTutor nuevoToken = new TokenTutor();
-                            nuevoToken.TutorID = u.Id;
-                            nuevoToken.API_Token = token;
-                            ctx.TokenTutor.Add(nuevoToken);
-                            ctx.SaveChanges();
-                        }
-                        else
-                        {
-                            u.TokenTutor.API_Token = token;
+                        if (u.Token != token) { 
+                            u.Token = token;
                             ctx.SaveChanges();
                         }
                         ret = new { msg = "ok",
