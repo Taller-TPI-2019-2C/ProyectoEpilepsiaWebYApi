@@ -30,7 +30,8 @@ namespace Epilepsia.NET.Controllers
             Usuario u;
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                try { 
+                try
+                {
                     u = ctx.Usuario.Where(x => x.Email == usuario && x.Contrasenia == contrasenia).FirstOrDefault();
                     if (u == null)
                     {
@@ -38,25 +39,31 @@ namespace Epilepsia.NET.Controllers
                     }
                     else
                     {
-                        if (u.Token != token) { 
+                        if (u.Token != token)
+                        {
                             u.Token = token;
                             ctx.SaveChanges();
                         }
-                        ret = new { msg = "ok",
-                            id = u.Id,
-                            nombre = u.Nombre + " " + u.Apellido,
-                            pacientes = u.Usuario2.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray()
-                        };
-                    }
-                    else
-                    {
-                        ret = new
+                        if (u.Paciente == false)
                         {
-                            msg = "ok",
-                            id = u.Id,
-                            nombre = u.Nombre + " " + u.Apellido,
-                            tutores = u.Usuario1.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray()
-                        };
+                            ret = new
+                            {
+                                msg = "ok",
+                                id = u.Id,
+                                nombre = u.Nombre + " " + u.Apellido,
+                                pacientes = u.Usuario2.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray()
+                            };
+                        }
+                        else
+                        {
+                            ret = new
+                            {
+                                msg = "ok",
+                                id = u.Id,
+                                nombre = u.Nombre + " " + u.Apellido,
+                                tutores = u.Usuario1.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray()
+                            };
+                        }
                     }
                 }
                 catch (Exception)
