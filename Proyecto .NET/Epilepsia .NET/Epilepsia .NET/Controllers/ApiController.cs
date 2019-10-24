@@ -103,7 +103,7 @@ namespace Epilepsia.NET.Controllers
         }
 
         [AllowCrossSiteJson]
-        public ActionResult Registro(string email, string contrasenia, string nombre, string apellido, string token)
+        public ActionResult Registro(string email, string contrasenia, string nombre, string apellido, string token, bool paciente)
         {
             if (String.IsNullOrEmpty(email) ||
                 String.IsNullOrEmpty(contrasenia) ||
@@ -128,6 +128,7 @@ namespace Epilepsia.NET.Controllers
                 u.Email = email;
                 u.Contrasenia = contrasenia;
                 u.Token = token;
+                u.Paciente = paciente;
 
                 ctx.Usuario.Add(u);
                 ctx.SaveChanges();
