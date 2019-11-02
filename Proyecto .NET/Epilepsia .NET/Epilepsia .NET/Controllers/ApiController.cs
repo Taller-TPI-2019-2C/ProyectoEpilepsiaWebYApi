@@ -85,18 +85,31 @@ namespace Epilepsia.NET.Controllers
                 {
                     u = ctx.Usuario.Where(x => x.Id == pacienteId).FirstOrDefault();
                     LogManager.Escribir("Recibido señal del paciente " + u.Nombre + " " + u.Apellido + " del tipo "+ tipo, ruta);
+                    string mensaje = " "; 
+                    switch (tipo)
+                    {
+                        case 1: mensaje = u.Nombre + " " + u.Apellido + " acaba de tener un ritmo cardiaco irregular, podria estar teniendo una crisis"; break;
+                        case 2: mensaje = u.Nombre + " " + u.Apellido + " acaba de activar el boton anti-panico"; break;
+                        default: mensaje = u.Nombre + " " + u.Apellido + " envio una notificacion de tipo " + tipo; break;
+                    }
                     foreach (Usuario tutor in u.Usuario1)
                     {
                         if (!String.IsNullOrEmpty(tutor.Token)) {
-                            string mensaje = "recibido alerta de tipo " + tipo + " del paciente " + u.Nombre + " " + u.Apellido;
                             UsuarioServicio.EnviarNotificacionHaciaCelular(tutor.Token,mensaje);
+                            Alerta alerta = new Alerta();
+                            alerta.Id_Usuario_Paciente = u.Id;
+                            alerta.Id_Usuario_Tutor = tutor.Id;
+                            alerta.Tipo_Alerta = tipo;
+                            alerta.Tiempo = DateTime.Now;
+                            ctx.Alerta.Add(alerta);
                             LogManager.Escribir("--> Enviado al tutor " + tutor.Nombre + " " + tutor.Apellido + " (Token: " + tutor.Token + ")",ruta);
                         }
                     }
+                    ctx.SaveChanges();
                 }
                 return Json(new { msg = "ok" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(new { msg = "error" });
             }           

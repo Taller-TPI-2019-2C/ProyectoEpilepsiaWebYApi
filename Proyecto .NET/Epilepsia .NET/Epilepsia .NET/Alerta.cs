@@ -15,9 +15,10 @@ namespace Epilepsia.NET
     public partial class Alerta
     {
         public long Id { get; set; }
-        public string Tipo_Alerta { get; set; }
+        public Nullable<int> Tipo_Alerta { get; set; }
         public long Id_Usuario_Paciente { get; set; }
         public long Id_Usuario_Tutor { get; set; }
+        public Nullable<System.DateTime> Tiempo { get; set; }
     
         public virtual Usuario Usuario { get; set; }
         public virtual Usuario Usuario1 { get; set; }
