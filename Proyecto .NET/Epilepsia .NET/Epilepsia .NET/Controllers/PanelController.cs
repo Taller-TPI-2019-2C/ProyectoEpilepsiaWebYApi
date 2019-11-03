@@ -85,5 +85,18 @@ namespace Epilepsia.NET.Controllers
             UsuarioServicio.DesactivarRecordatorioMedicamento(id);
             return RedirectToAction("Medicamentos");
         }
+
+        public ActionResult Historial()
+        {
+            Usuario usuario = Session["Usuario"] as Usuario;
+            if (usuario.Paciente == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            ViewBag.Usuario = usuario;
+            return View();
+        }
     }
 }

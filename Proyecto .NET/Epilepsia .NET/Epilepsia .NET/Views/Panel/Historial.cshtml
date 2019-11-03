@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Historial";
+    Usuario usuario = ViewBag.Usuario;
+    string tipo;
+}
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="jumbotron-aura-no-border col-12 text-center px-0 mx-0">
+                <p>Registro de episodios detectados</p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="color-aura-dark text-white">
+                                <td>Tipo</td>
+                                <td>Fecha</td>
+                                <td>Notas</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Alerta a in usuario.Alerta)
+                            {
+                                if (a.Tipo_Alerta == 2)
+                                {
+                                    tipo = "Botón antipánico";
+                                }
+                                else
+                                {
+                                    tipo = "Detección";
+                                }
+                                    <tr>
+                                        <td>@tipo</td>
+                                        <td>@a.Tiempo</td>
+                                        <td>@a.Notas</td>
+                                    </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
