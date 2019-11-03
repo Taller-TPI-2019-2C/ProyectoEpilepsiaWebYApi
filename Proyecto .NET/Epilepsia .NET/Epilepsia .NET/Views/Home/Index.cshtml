@@ -31,19 +31,29 @@
                 }
                 else
                 {
-                    <div class="d-xl-none d-lg-none">
-                        <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
-                            <a class="btn btn-secondary" href="/Panel/Personas">Conexiones</a>
-                        </div>
+            <div class="d-xl-none d-lg-none">
+                <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
+                    <a class="btn btn-secondary" href="/Panel/Personas">Conexiones</a>
+                </div>
 
-                        <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
-                            <a class="btn btn-secondary" href="/Panel/MiCuenta">Mi cuenta</a>
-                        </div>
+                <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
+                    <a class="btn btn-secondary" href="/Panel/MiCuenta">Mi cuenta</a>
+                </div>
 
+                @{
+                    Usuario u = Session["Usuario"] as Usuario;
+                    if (u.Paciente == true)
+                    {
                         <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
-                            <a class="btn btn-secondary" href="/Home/Logout">Cerrar sesión</a>
+                            <a class="btn btn-secondary" href="/Panel/Medicamentos">Medicamentos</a>
                         </div>
-                    </div>
+                    }
+                }
+
+                <div class="btn-group-vertical w-100 mb-3 float-right" role="group">
+                    <a class="btn btn-secondary" href="/Home/Logout">Cerrar sesión</a>
+                </div>
+            </div>
                 }
             </section>
         </div>

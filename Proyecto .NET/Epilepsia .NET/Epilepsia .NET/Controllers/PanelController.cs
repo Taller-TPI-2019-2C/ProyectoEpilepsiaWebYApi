@@ -1,4 +1,5 @@
-﻿using Epilepsia.NET.Servicios;
+﻿using Epilepsia.NET.Models;
+using Epilepsia.NET.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,36 @@ namespace Epilepsia.NET.Controllers
                 ViewBag.Usuario = usuario;
             }
             return View();
+        }
+
+        public ActionResult Medicamentos()
+        {
+            Usuario usuario = Session["Usuario"] as Usuario;
+            if (usuario.Paciente == false) return RedirectToAction("Index", "Home");
+            ViewBag.Usuario = usuario;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Medicamentos(FormMedicamento form)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorFormulario = "Asegurese de completar todos los campos.";
+                return View("Medicamentos");
+            }
+
+            UsuarioServicio.NuevoMedicamento(form);
+            Session["Usuario"] = UsuarioServicio.ObtenerUsuarioActualizado(Session["Usuario"] as Usuario);
+
+            return RedirectToAction("Medicamentos");
+        }
+
+        public ActionResult DesactivarRecordatorioMedicamento(int id)
+        {
+            UsuarioServicio.DesactivarRecordatorioMedicamento(id);
+            return RedirectToAction("Medicamentos");
         }
     }
 }

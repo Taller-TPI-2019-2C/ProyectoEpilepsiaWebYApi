@@ -18,8 +18,8 @@ namespace Epilepsia.NET
         public Nullable<long> PacienteId { get; set; }
         public string Nombre { get; set; }
         public int PeriodicidadHoras { get; set; }
-        public System.DateTime UltimaVez { get; set; }
         public bool Activo { get; set; }
+        public Nullable<System.DateTime> UltimaVez { get; set; }
     
         public virtual Usuario Usuario { get; set; }
     }

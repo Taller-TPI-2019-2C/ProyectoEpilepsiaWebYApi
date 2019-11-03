@@ -20,12 +20,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PacienteId" Type="bigint" />
           <Property Name="Nombre" Type="varchar(max)" />
           <Property Name="PeriodicidadHoras" Type="int" Nullable="false" />
-          <Property Name="UltimaVez" Type="datetime" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="UltimaVez" Type="datetime" />
         </EntityType>
         <EntityType Name="Registro_Episodio">
           <Key>
@@ -92,7 +92,7 @@
           <Property Name="Paciente" Type="bit" />
           <Property Name="Token" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK_MedicamentoPaciente">
+        <Association Name="FK_Medicacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -222,7 +222,7 @@
           <EntitySet Name="Tratamiento" EntityType="Self.Tratamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TutorPaciente" EntityType="Self.TutorPaciente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_MedicamentoPaciente" Association="Self.FK_MedicamentoPaciente">
+          <AssociationSet Name="FK_Medicacion" Association="Self.FK_Medicacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Medicamento" EntitySet="Medicamento" />
           </AssociationSet>
@@ -284,7 +284,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Alerta" EntitySet="Alerta" />
           </AssociationSet>
-          <AssociationSet Name="FK_MedicamentoPaciente" Association="TALLER_INTEGRADOR_TPModel.FK_MedicamentoPaciente">
+          <AssociationSet Name="FK_Medicacion" Association="TALLER_INTEGRADOR_TPModel.FK_Medicacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Medicamento" EntitySet="Medicamento" />
           </AssociationSet>
@@ -330,13 +330,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PacienteId" Type="Int64" />
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="PeriodicidadHoras" Type="Int32" Nullable="false" />
-          <Property Name="UltimaVez" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="TALLER_INTEGRADOR_TPModel.FK_MedicamentoPaciente" FromRole="Medicamento" ToRole="Usuario" />
+          <Property Name="UltimaVez" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Usuario" Relationship="TALLER_INTEGRADOR_TPModel.FK_Medicacion" FromRole="Medicamento" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Registro_Episodio">
           <Key>
@@ -401,7 +401,7 @@
           <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Alerta" Relationship="TALLER_INTEGRADOR_TPModel.FK_Usuario_Paciente" FromRole="Usuario" ToRole="Alerta" />
           <NavigationProperty Name="Alerta1" Relationship="TALLER_INTEGRADOR_TPModel.FK_Usuario_Tutor" FromRole="Usuario" ToRole="Alerta" />
-          <NavigationProperty Name="Medicamento" Relationship="TALLER_INTEGRADOR_TPModel.FK_MedicamentoPaciente" FromRole="Usuario" ToRole="Medicamento" />
+          <NavigationProperty Name="Medicamento" Relationship="TALLER_INTEGRADOR_TPModel.FK_Medicacion" FromRole="Usuario" ToRole="Medicamento" />
           <NavigationProperty Name="Registro_Episodio" Relationship="TALLER_INTEGRADOR_TPModel.FK_Registro_Usuario" FromRole="Usuario" ToRole="Registro_Episodio" />
           <NavigationProperty Name="Telefono" Relationship="TALLER_INTEGRADOR_TPModel.FK_Telefono_Usuario" FromRole="Usuario" ToRole="Telefono" />
           <NavigationProperty Name="Token_Login" Relationship="TALLER_INTEGRADOR_TPModel.FK_Token_Login_Id" FromRole="Usuario" ToRole="Token_Login" />
@@ -434,7 +434,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MedicamentoPaciente">
+        <Association Name="FK_Medicacion">
           <End Type="TALLER_INTEGRADOR_TPModel.Usuario" Role="Usuario" Multiplicity="0..1" />
           <End Type="TALLER_INTEGRADOR_TPModel.Medicamento" Role="Medicamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,8 +531,8 @@
           <EntitySetMapping Name="Medicamento">
             <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Medicamento">
               <MappingFragment StoreEntitySet="Medicamento">
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="UltimaVez" ColumnName="UltimaVez" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="PeriodicidadHoras" ColumnName="PeriodicidadHoras" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="PacienteId" ColumnName="PacienteId" />

@@ -75,6 +75,11 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.ListarMedicamentosDePaciente(id);
         }
 
+        public static Medicamento DesactivarRecordatorioMedicamento(int id)
+        {
+            return UsuarioDao.DesactivarRecordatorioMedicamento(id);
+        }
+
         public static void TomarMedicamento (int id)
         {
             UsuarioDao.TomarMedicamento(id);

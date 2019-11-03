@@ -25,6 +25,7 @@ namespace Epilepsia.NET.Dao
                 Usuario u = ctx.Usuario
                     .Include(x => x.Usuario1)
                     .Include(x => x.Usuario2)
+                    .Include(x => x.Medicamento)
                     .FirstOrDefault(x => x.Email == formLogin.Email && x.Contrasenia == formLogin.Contrasenia);
                 return u;
             }
@@ -126,6 +127,17 @@ namespace Epilepsia.NET.Dao
             }
         }
 
+        public static Medicamento DesactivarRecordatorioMedicamento(int id)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                Medicamento m = ctx.Medicamento.Find(id);
+                m.Activo = false;
+                ctx.SaveChanges();
+                return m;
+            }
+        }
+
         public static string AgregarEarlyAdopter(string email)
         {
             /*Aca se agrega el email a la tabla de emails para early adopters (no creada de momento)
@@ -159,7 +171,7 @@ namespace Epilepsia.NET.Dao
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                Usuario usuarioActualizado = ctx.Usuario.Include("Usuario1").Include("Usuario2")
+                Usuario usuarioActualizado = ctx.Usuario.Include("Usuario1").Include("Usuario2").Include("Medicamento")
                     .FirstOrDefault(x => x.Id == usuarioEnSesion.Id);
 
                 ctx.Usuario.Attach(usuarioBuscado);
@@ -174,7 +186,7 @@ namespace Epilepsia.NET.Dao
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
             {
-                return ctx.Usuario.Find(usuario.Id);
+                return ctx.Usuario.Include("Usuario1").Include("Usuario2").Include("Medicamento").FirstOrDefault(x => x.Id == usuario.Id);//.Find(usuario.Id);
             }
         }
     }
