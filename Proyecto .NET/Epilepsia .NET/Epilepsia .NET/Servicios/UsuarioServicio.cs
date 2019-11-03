@@ -65,6 +65,21 @@ namespace Epilepsia.NET.Servicios
             }
         }
 
+        public static Medicamento NuevoMedicamento(FormMedicamento form)
+        {
+            return UsuarioDao.NuevoMedicamento(form);
+        }
+
+        public static List<Medicamento> ListarMedicamentosDePaciente(long id)
+        {
+            return UsuarioDao.ListarMedicamentosDePaciente(id);
+        }
+
+        public static void TomarMedicamento (int id)
+        {
+            UsuarioDao.TomarMedicamento(id);
+        }
+
         //Esto no ira aca seguramente, aun no se bien como funciona el método. Sería parte de la API
         public static bool EnviarNotificacionHaciaCelular(string token, string value)
         {

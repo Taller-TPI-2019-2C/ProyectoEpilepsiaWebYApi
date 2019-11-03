@@ -66,6 +66,66 @@ namespace Epilepsia.NET.Dao
             }
         }
 
+        public static List<Medicamento> ListarMedicamentosDePaciente(long id)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                try
+                {
+                    List<Medicamento> lista = ctx.Medicamento.Where(m => m.PacienteId == id).ToList();
+                    return lista;
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Excepción: " + e.Message);
+                    return null;
+                }
+            }
+        }
+
+        public static Medicamento NuevoMedicamento(FormMedicamento form)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                try
+                {
+                    Medicamento medicamento = new Medicamento();
+                    medicamento.PacienteId = form.pacienteId;
+                    medicamento.Nombre = form.nombre;
+                    medicamento.PeriodicidadHoras = form.periodicidadHoras;
+                    medicamento.Activo = true;
+                    medicamento.UltimaVez = DateTime.Now;
+                    ctx.Medicamento.Add(medicamento);
+                    ctx.SaveChanges();
+
+                    return medicamento;
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Excepción: " + e.Message);
+                    return null;
+                }
+            }
+        }
+
+        public static void TomarMedicamento(int id)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                try
+                {
+                    Medicamento medicamento = ctx.Medicamento.Find(id);
+                    medicamento.UltimaVez = DateTime.Now;
+                    ctx.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Excepción: " + e.Message);
+                    return;
+                }
+            }
+        }
+
         public static string AgregarEarlyAdopter(string email)
         {
             /*Aca se agrega el email a la tabla de emails para early adopters (no creada de momento)

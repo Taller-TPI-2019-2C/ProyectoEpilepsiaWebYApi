@@ -12,16 +12,15 @@ namespace Epilepsia.NET
     using System;
     using System.Collections.Generic;
     
-    public partial class Alerta
+    public partial class Medicamento
     {
         public long Id { get; set; }
-        public Nullable<int> Tipo_Alerta { get; set; }
-        public long Id_Usuario_Paciente { get; set; }
-        public long Id_Usuario_Tutor { get; set; }
-        public Nullable<System.DateTime> Tiempo { get; set; }
-        public string Notas { get; set; }
+        public Nullable<long> PacienteId { get; set; }
+        public string Nombre { get; set; }
+        public int PeriodicidadHoras { get; set; }
+        public System.DateTime UltimaVez { get; set; }
+        public bool Activo { get; set; }
     
         public virtual Usuario Usuario { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
     }
 }

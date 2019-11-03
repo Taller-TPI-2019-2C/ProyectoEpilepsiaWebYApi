@@ -290,6 +290,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Medicamento.cs">
+      <DependentUpon>EpilepsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormMedicamento.cs" />
     <Compile Include="Models\FormLogin.cs" />
     <Compile Include="Models\FormUsuario.cs" />
     <Compile Include="Models\Util\LogManager.cs" />

@@ -1,4 +1,5 @@
-﻿using Epilepsia.NET.Servicios;
+﻿using Epilepsia.NET.Dao;
+using Epilepsia.NET.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,8 @@ namespace Epilepsia.NET.Controllers
                                 msg = "ok",
                                 id = u.Id,
                                 nombre = u.Nombre + " " + u.Apellido,
-                                tutores = u.Usuario1.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray()
+                                tutores = u.Usuario1.Select(x => new { id = x.Id, nombre = x.Nombre + " " + x.Apellido }).ToArray(),
+                                medicamentos = u.Medicamento.Select(x => new { id=x.Id, nombre = x.Nombre, periodicidadHoras = x.PeriodicidadHoras, ultimaVez = x.UltimaVez }).ToArray()
                             };
                         }
                     }
@@ -73,9 +75,15 @@ namespace Epilepsia.NET.Controllers
             }
             return Json(ret);
         }
+        [AllowCrossSiteJson]
+        public ActionResult TomarMedicamento(int id)
+        {
+            UsuarioDao.TomarMedicamento(id);
+            return Json(new { msg = "ok" });
+        }
 
         [AllowCrossSiteJson]
-        public ActionResult MandarAlerta(long pacienteId, int tipo)
+        public ActionResult MandarAlerta(long pacienteId, int tipo,string notas)
         {
             //TO DO: mandar notificacion a la api
             try { 
@@ -101,6 +109,7 @@ namespace Epilepsia.NET.Controllers
                             alerta.Id_Usuario_Tutor = tutor.Id;
                             alerta.Tipo_Alerta = tipo;
                             alerta.Tiempo = DateTime.Now;
+                            alerta.Notas = notas;
                             ctx.Alerta.Add(alerta);
                             LogManager.Escribir("--> Enviado al tutor " + tutor.Nombre + " " + tutor.Apellido + " (Token: " + tutor.Token + ")",ruta);
                         }

@@ -14,6 +14,18 @@
           <Property Name="Id_Usuario_Paciente" Type="bigint" Nullable="false" />
           <Property Name="Id_Usuario_Tutor" Type="bigint" Nullable="false" />
           <Property Name="Tiempo" Type="datetime" />
+          <Property Name="Notas" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="PacienteId" Type="bigint" />
+          <Property Name="Nombre" Type="varchar(max)" />
+          <Property Name="PeriodicidadHoras" Type="int" Nullable="false" />
+          <Property Name="UltimaVez" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Registro_Episodio">
           <Key>
@@ -80,6 +92,18 @@
           <Property Name="Paciente" Type="bit" />
           <Property Name="Token" Type="varchar(max)" />
         </EntityType>
+        <Association Name="FK_MedicamentoPaciente">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medicamento">
+              <PropertyRef Name="PacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Paciente">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="TutorPaciente" Type="Self.TutorPaciente" Multiplicity="*" />
@@ -190,6 +214,7 @@
         </Association>
         <EntityContainer Name="TALLER_INTEGRADOR_TPModelStoreContainer">
           <EntitySet Name="Alerta" EntityType="Self.Alerta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registro_Episodio" EntityType="Self.Registro_Episodio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Telefono" EntityType="Self.Telefono" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Token_Login" EntityType="Self.Token_Login" Schema="dbo" store:Type="Tables" />
@@ -197,6 +222,10 @@
           <EntitySet Name="Tratamiento" EntityType="Self.Tratamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TutorPaciente" EntityType="Self.TutorPaciente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MedicamentoPaciente" Association="Self.FK_MedicamentoPaciente">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Medicamento" EntitySet="Medicamento" />
+          </AssociationSet>
           <AssociationSet Name="FK_Paciente" Association="Self.FK_Paciente">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="TutorPaciente" EntitySet="TutorPaciente" />
@@ -240,6 +269,7 @@
       <Schema Namespace="TALLER_INTEGRADOR_TPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Epilepsia_TP_Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Alerta" EntityType="TALLER_INTEGRADOR_TPModel.Alerta" />
+          <EntitySet Name="Medicamento" EntityType="TALLER_INTEGRADOR_TPModel.Medicamento" />
           <EntitySet Name="Registro_Episodio" EntityType="TALLER_INTEGRADOR_TPModel.Registro_Episodio" />
           <EntitySet Name="Telefono" EntityType="TALLER_INTEGRADOR_TPModel.Telefono" />
           <EntitySet Name="Token_Login" EntityType="TALLER_INTEGRADOR_TPModel.Token_Login" />
@@ -253,6 +283,10 @@
           <AssociationSet Name="FK_Usuario_Tutor" Association="TALLER_INTEGRADOR_TPModel.FK_Usuario_Tutor">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Alerta" EntitySet="Alerta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicamentoPaciente" Association="TALLER_INTEGRADOR_TPModel.FK_MedicamentoPaciente">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Medicamento" EntitySet="Medicamento" />
           </AssociationSet>
           <AssociationSet Name="FK_Registro_Usuario" Association="TALLER_INTEGRADOR_TPModel.FK_Registro_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -288,8 +322,21 @@
           <Property Name="Id_Usuario_Paciente" Type="Int64" Nullable="false" />
           <Property Name="Id_Usuario_Tutor" Type="Int64" Nullable="false" />
           <Property Name="Tiempo" Type="DateTime" Precision="3" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Usuario" Relationship="TALLER_INTEGRADOR_TPModel.FK_Usuario_Paciente" FromRole="Alerta" ToRole="Usuario" />
           <NavigationProperty Name="Usuario1" Relationship="TALLER_INTEGRADOR_TPModel.FK_Usuario_Tutor" FromRole="Alerta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="PacienteId" Type="Int64" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PeriodicidadHoras" Type="Int32" Nullable="false" />
+          <Property Name="UltimaVez" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="TALLER_INTEGRADOR_TPModel.FK_MedicamentoPaciente" FromRole="Medicamento" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Registro_Episodio">
           <Key>
@@ -354,6 +401,7 @@
           <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Alerta" Relationship="TALLER_INTEGRADOR_TPModel.FK_Usuario_Paciente" FromRole="Usuario" ToRole="Alerta" />
           <NavigationProperty Name="Alerta1" Relationship="TALLER_INTEGRADOR_TPModel.FK_Usuario_Tutor" FromRole="Usuario" ToRole="Alerta" />
+          <NavigationProperty Name="Medicamento" Relationship="TALLER_INTEGRADOR_TPModel.FK_MedicamentoPaciente" FromRole="Usuario" ToRole="Medicamento" />
           <NavigationProperty Name="Registro_Episodio" Relationship="TALLER_INTEGRADOR_TPModel.FK_Registro_Usuario" FromRole="Usuario" ToRole="Registro_Episodio" />
           <NavigationProperty Name="Telefono" Relationship="TALLER_INTEGRADOR_TPModel.FK_Telefono_Usuario" FromRole="Usuario" ToRole="Telefono" />
           <NavigationProperty Name="Token_Login" Relationship="TALLER_INTEGRADOR_TPModel.FK_Token_Login_Id" FromRole="Usuario" ToRole="Token_Login" />
@@ -383,6 +431,18 @@
             </Principal>
             <Dependent Role="Alerta">
               <PropertyRef Name="Id_Usuario_Tutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicamentoPaciente">
+          <End Type="TALLER_INTEGRADOR_TPModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="TALLER_INTEGRADOR_TPModel.Medicamento" Role="Medicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medicamento">
+              <PropertyRef Name="PacienteId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,10 +519,23 @@
           <EntitySetMapping Name="Alerta">
             <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Alerta">
               <MappingFragment StoreEntitySet="Alerta">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
                 <ScalarProperty Name="Id_Usuario_Tutor" ColumnName="Id_Usuario_Tutor" />
                 <ScalarProperty Name="Id_Usuario_Paciente" ColumnName="Id_Usuario_Paciente" />
                 <ScalarProperty Name="Tipo_Alerta" ColumnName="Tipo_Alerta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicamento">
+            <EntityTypeMapping TypeName="TALLER_INTEGRADOR_TPModel.Medicamento">
+              <MappingFragment StoreEntitySet="Medicamento">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="UltimaVez" ColumnName="UltimaVez" />
+                <ScalarProperty Name="PeriodicidadHoras" ColumnName="PeriodicidadHoras" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PacienteId" ColumnName="PacienteId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

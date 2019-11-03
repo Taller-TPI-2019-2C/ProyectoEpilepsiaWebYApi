@@ -26,6 +26,7 @@ namespace Epilepsia.NET
         }
     
         public virtual DbSet<Alerta> Alerta { get; set; }
+        public virtual DbSet<Medicamento> Medicamento { get; set; }
         public virtual DbSet<Registro_Episodio> Registro_Episodio { get; set; }
         public virtual DbSet<Telefono> Telefono { get; set; }
         public virtual DbSet<Token_Login> Token_Login { get; set; }

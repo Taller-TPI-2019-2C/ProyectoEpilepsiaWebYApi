@@ -19,6 +19,7 @@ namespace Epilepsia.NET
         {
             this.Alerta = new HashSet<Alerta>();
             this.Alerta1 = new HashSet<Alerta>();
+            this.Medicamento = new HashSet<Medicamento>();
             this.Registro_Episodio = new HashSet<Registro_Episodio>();
             this.Telefono = new HashSet<Telefono>();
             this.Tratamiento = new HashSet<Tratamiento>();
@@ -40,6 +41,8 @@ namespace Epilepsia.NET
         public virtual ICollection<Alerta> Alerta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Alerta> Alerta1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medicamento> Medicamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registro_Episodio> Registro_Episodio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
