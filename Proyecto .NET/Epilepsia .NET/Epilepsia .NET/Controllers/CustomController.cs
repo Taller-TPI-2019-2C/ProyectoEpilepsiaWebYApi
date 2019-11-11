@@ -20,7 +20,7 @@ namespace Epilepsia.NET.Controllers
 
             if (Session["Usuario"] == null)
             {
-                string token = filterContext.RouteData.Values["token"].ToString();
+                string token = filterContext.HttpContext.Request.Params["token"].ToString();
                 Usuario logeado = UsuarioServicio.LoginPorToken(token);
                 if (logeado != null) {                   
                     Session["Usuario"] = logeado;

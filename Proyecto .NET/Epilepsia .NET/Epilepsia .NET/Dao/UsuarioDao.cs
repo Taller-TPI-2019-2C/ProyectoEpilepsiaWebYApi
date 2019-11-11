@@ -92,7 +92,13 @@ namespace Epilepsia.NET.Dao
             {
                 try
                 {
-                    return ctx.Usuario.Where(u => u.Token == token).FirstOrDefault();
+                    return ctx.Usuario.Where(u => u.Token == token)
+                    .Include(x => x.Usuario1)
+                    .Include(x => x.Usuario2)
+                    .Include(x => x.Medicamento)
+                    .Include(x => x.Alerta)
+                    .Include(x => x.Alerta1)
+                    .FirstOrDefault();
                 }
                 catch (Exception e)
                 {
