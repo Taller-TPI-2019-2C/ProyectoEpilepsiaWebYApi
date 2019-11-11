@@ -42,6 +42,11 @@ namespace Epilepsia.NET.Controllers
                     {
                         if (u.Token != token)
                         {
+                            List<Usuario> usuarioTokens = ctx.Usuario.Where(x => x.Token == token).ToList();
+                            foreach (Usuario t in usuarioTokens)
+                            {
+                                t.Token = String.Empty;
+                            }
                             u.Token = token;
                             ctx.SaveChanges();
                         }

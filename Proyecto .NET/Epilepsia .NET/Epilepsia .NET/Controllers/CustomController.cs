@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Epilepsia.NET.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -19,12 +20,20 @@ namespace Epilepsia.NET.Controllers
 
             if (Session["Usuario"] == null)
             {
-                string urlIntentada = Request.Url.ToString();
-                UrlHelper u = new UrlHelper(this.ControllerContext.RequestContext);
-                string urlNueva = u.Action("Login",
-                    "Home",
-                    new { ReturnUrl = urlIntentada });
-                filterContext.Result = Redirect(urlNueva);
+                string token = filterContext.RouteData.Values["token"].ToString();
+                Usuario logeado = UsuarioServicio.LoginPorToken(token);
+                if (logeado != null) {                   
+                    Session["Usuario"] = logeado;
+                    ViewBag.Usuario = Session["Usuario"];
+                }
+                else { 
+                    string urlIntentada = Request.Url.ToString();
+                    UrlHelper u = new UrlHelper(this.ControllerContext.RequestContext);
+                    string urlNueva = u.Action("Login",
+                        "Home",
+                        new { ReturnUrl = urlIntentada });
+                    filterContext.Result = Redirect(urlNueva);
+                }
             }
             else
             {

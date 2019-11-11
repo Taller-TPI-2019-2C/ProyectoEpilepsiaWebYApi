@@ -86,6 +86,22 @@ namespace Epilepsia.NET.Dao
             }
         }
 
+        public static Usuario LoginPorToken(string token)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                try
+                {
+                    return ctx.Usuario.Where(u => u.Token == token).FirstOrDefault();
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Excepción: " + e.Message);
+                    return null;
+                }
+            }
+        }
+
         public static Medicamento NuevoMedicamento(FormMedicamento form)
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())

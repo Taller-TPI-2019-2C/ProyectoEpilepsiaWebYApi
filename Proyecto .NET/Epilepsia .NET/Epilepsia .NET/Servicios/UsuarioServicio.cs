@@ -80,6 +80,17 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.DesactivarRecordatorioMedicamento(id);
         }
 
+        public static Usuario LoginPorToken(string token)
+        {
+            if (!String.IsNullOrEmpty(token)) { 
+                return UsuarioDao.LoginPorToken(token);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static void TomarMedicamento (int id)
         {
             UsuarioDao.TomarMedicamento(id);
