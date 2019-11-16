@@ -5,17 +5,29 @@
     string tipo;
 }
 
+@if (usuario.Alerta.Count == 0)
+{
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div id="ContenedorJumbotronDatatable" class="jumbotron-aura-no-border col-12 text-center px-0 mx-0">
+                <p>No hay registros de episodios detectados</p>
+            </div>            
+        </div>
+    </div>
+}
+else
+{
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="jumbotron-aura-no-border col-12 text-center px-0 mx-0">
                 <p>Registro de episodios detectados</p>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="TablaConDatatable">
                         <thead>
                             <tr class="color-aura-dark text-white">
-                                <td>Tipo</td>
-                                <td>Fecha</td>
-                                <td>Notas</td>
+                                <th>Tipo</th>
+                                <th>Fecha</th>
+                                <th>Notas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,11 +41,11 @@
                                 {
                                     tipo = "Detección";
                                 }
-                                    <tr>
-                                        <td>@tipo</td>
-                                        <td>@a.Tiempo</td>
-                                        <td>@a.Notas</td>
-                                    </tr>
+                                <tr>
+                                    <td>@tipo</td>
+                                    <td>@a.Tiempo</td>
+                                    <td>@a.Notas</td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -41,4 +53,7 @@
             </div>
         </div>
     </div>
+}
+
+
 

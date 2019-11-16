@@ -10,6 +10,7 @@
     <title>@ViewBag.Title - Aura</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <link href="~/Content/Estilo.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -19,74 +20,32 @@
     <script src="~/Scripts/messages_es.min.js"></script>
 </head>
 <body>
-    <!--  Dejo todo comentado por las dudas por si se vuelve a necesitar -->
-    @*
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="navbar-brand" href="/">
-                    <img src="/img/AuraLogoNoBG.png" height="120" class="d-inline-block align-top img-logo" alt="">
-                </a>
-            </li>
-        </ul>
-        <!-- Colapsable solo para logearte. Si estas logeado ves los botones -->
-        @if (usuario == null)
-        {
-            <button class="navbar-toggler visible-xs" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        }
-        else if(((RazorView)ViewContext.View).ViewPath != "~/Views/Home/Index.cshtml")
-        {
-            <button class="btn btn-success navbar d-xl-none d-lg-none visible-md visible-xs visible-sm" type="button" onclick="window.history.back();">
-                <span>&larr;</span>
-            </button>
-        }
 
-        <!-- Debo arreglar la chanchada de abajo luego, no debería poner dos veces lo mismo -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            @if (usuario == null)
-            {
-                <!-- En pantalla normal -->
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item d-none d-md-block">
-                        <a class="btn btn-primary" href="/Home/Registro" role="button">Registrarse</a>
-                    </li>
-                    <li class="nav-item d-none d-md-block">
-                        <a class="acceder-link" href="/Home/Login">Iniciar sesión</a>
-                    </li>
-                </ul>
-                <!-- En pantalla chica -->
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0 d-lg-none d-md-none">
-                    <li class="nav-item">
-                        <a class="btn btn-primary" href="/Home/Registro" role="button">Registrarse</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="acceder-link" href="/Home/Login">Iniciar sesión</a>
-                    </li>
-                </ul>
-            }
-            else
-            {
-                <!-- En pantalla normal -->
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item d-none d-md-block">
-                        <a class="acceder-link" href="/Panel/Personas">Conexiones</a>
-                    </li>
-                    <li class="nav-item d-none d-md-block">
-                        <a class="acceder-link" href="/Panel/MiCuenta">Mi cuenta</a>
-                    </li>
-                    <li class="nav-item d-none d-md-block">
-                        <a class="acceder-link" href="/Home/Logout">Cerrar sesión</a>
-                    </li>
-                </ul>
-            }
-        </div>
-    </nav>
-    *@
 
     <div class="container-fluid body-content">
         @RenderBody()
-    </div>    
+    </div>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#TablaConDatatable').DataTable({
+                "scrollX": true,
+                "pageLength": 10,
+                "filter": true,
+                "deferRender": true,
+                "scrollCollapse": true,
+                "scroller": true,
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                },
+                "initComplete": function (settings, json) {
+                    $("table").css("width", "100%");
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
