@@ -55,7 +55,12 @@
                                     <td>@m.Nombre</td>
                                     <td>@m.PeriodicidadHoras</td>
                                     <td>@m.UltimaVez</td>
-                                    <td><a href="@Url.Action("DesactivarRecordatorioMedicamento/" + m.Id, "Panel")">Click</a></td>
+                                    @*<td><a href="@Url.Action("DesactivarRecordatorioMedicamento/" + m.Id, "Panel")">Click</a></td>*@
+                                    <td>
+                                        <a class="nav-link" href="@Url.Action("DesactivarRecordatorioMedicamento/" + m.Id, "Panel")">
+                                            <i class="fas fa-trash" style="color:black;"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             }
                         }
