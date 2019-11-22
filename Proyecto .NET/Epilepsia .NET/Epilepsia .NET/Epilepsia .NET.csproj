@@ -348,6 +348,7 @@
     <Content Include="Views\Shared\_LoadPartial.cshtml" />
     <Content Include="Views\Panel\Medicamentos.cshtml" />
     <Content Include="Views\Panel\Historial.cshtml" />
+    <Content Include="Views\Panel\Episodio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

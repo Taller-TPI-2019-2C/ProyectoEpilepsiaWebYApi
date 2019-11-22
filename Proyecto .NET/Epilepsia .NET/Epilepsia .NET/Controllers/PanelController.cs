@@ -93,10 +93,23 @@ namespace Epilepsia.NET.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
-
             ViewBag.Usuario = usuario;
             return View();
+        }
+
+        public ActionResult Episodio()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarEpisodio(Alerta alerta)
+        {
+            alerta = UsuarioServicio.CrearAlertaManual(alerta, Session["Usuario"] as Usuario);
+            UsuarioServicio.GuardarAlertaManual(alerta);
+            Session["Usuario"] = UsuarioServicio.ObtenerUsuarioActualizado(Session["Usuario"] as Usuario);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -96,7 +96,18 @@ namespace Epilepsia.NET.Servicios
             UsuarioDao.TomarMedicamento(id);
         }
 
-        //Esto no ira aca seguramente, aun no se bien como funciona el método. Sería parte de la API
+        public static Alerta CrearAlertaManual(Alerta alerta, Usuario usuario)
+        {
+            alerta.Id_Usuario_Paciente = usuario.Id;
+            alerta.Id_Usuario_Tutor = usuario.Id;
+            return alerta;
+        }
+
+        public static Alerta GuardarAlertaManual(Alerta alerta)
+        {
+            return UsuarioDao.GuardarAlertaManual(alerta);
+        }
+
         public static bool EnviarNotificacionHaciaCelular(string token, string value)
         {
             try

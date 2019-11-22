@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Episodio";
+}
+
+<div class="row justify-content-center">
+    <div class="jumbotron col-xl-4 col-lg-4 col-md-6 col-sm-10 col-xs-10 jumbotron-aura">
+        @using (@Html.BeginForm("AgregarEpisodio", "Panel", FormMethod.Post, new { @class = "form-group" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label for="tiempo">Horario:</label>
+                <input id="Tiempo" type="text" class="form-control" name="Tiempo" required />
+            </div>
+
+            <div class="form-group">
+                <label for="notas">Notas:</label>
+                <textarea id="notas" type="text" class="form-control" name="Notas" required></textarea>
+            </div>
+
+            if (ViewBag.ErrorFormulario != null)
+            {
+                <p>@ViewBag.ErrorFormulario</p>
+            }
+            <input type="submit" value="Guardar" class="btn color-aura-dark" />
+        }
+    </div>
+</div>
+<script>
+        $(function(){
+            $("#Tiempo").datepicker();
+        })
+</script>

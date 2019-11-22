@@ -224,5 +224,15 @@ namespace Epilepsia.NET.Dao
                     .FirstOrDefault(x => x.Id == usuario.Id);//.Find(usuario.Id);
             }
         }
+
+        public static Alerta GuardarAlertaManual(Alerta alerta)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                ctx.Alerta.Add(alerta);
+                ctx.SaveChanges();
+            }
+                return alerta;
+        }
     }
 }
