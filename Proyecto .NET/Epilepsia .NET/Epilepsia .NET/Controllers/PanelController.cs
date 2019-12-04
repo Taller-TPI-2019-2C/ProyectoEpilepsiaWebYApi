@@ -13,12 +13,10 @@ namespace Epilepsia.NET.Controllers
         // GET: Panel
         public ActionResult Personas ()
         {
-            ViewBag.Usuario = Session["Usuario"] as Usuario;
             return View();
         }
         public ActionResult Micuenta()
         {
-            ViewBag.Usuario = Session["Usuario"] as Usuario;
             return View();
         }
 
@@ -31,9 +29,6 @@ namespace Epilepsia.NET.Controllers
             {
                 return View("Micuenta");
             }
-
-            Usuario usuarioActualizado = UsuarioServicio.ActualizarDatos(usuario);
-            Session["Usuario"] = usuarioActualizado;
 
             return RedirectToAction("MiCuenta");
         }
@@ -50,8 +45,6 @@ namespace Epilepsia.NET.Controllers
             else
             {
                 ViewBag.ResultadoBusqueda = "Esta persona ha sido agregada como tutor";
-                Session["Usuario"] = usuario;
-                ViewBag.Usuario = usuario;
             }
             return View();
         }
@@ -60,7 +53,6 @@ namespace Epilepsia.NET.Controllers
         {
             Usuario usuario = Session["Usuario"] as Usuario;
             if (usuario.Paciente == false) return RedirectToAction("Index", "Home");
-            ViewBag.Usuario = usuario;
             return View();
         }
 
@@ -75,8 +67,6 @@ namespace Epilepsia.NET.Controllers
             }
 
             UsuarioServicio.NuevoMedicamento(form);
-            Session["Usuario"] = UsuarioServicio.ObtenerUsuarioActualizado(Session["Usuario"] as Usuario);
-
             return RedirectToAction("Medicamentos");
         }
 
@@ -93,7 +83,6 @@ namespace Epilepsia.NET.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            ViewBag.Usuario = usuario;
             return View();
         }
 
@@ -108,7 +97,6 @@ namespace Epilepsia.NET.Controllers
         {
             alerta = UsuarioServicio.CrearAlertaManual(alerta, Session["Usuario"] as Usuario);
             UsuarioServicio.GuardarAlertaManual(alerta);
-            Session["Usuario"] = UsuarioServicio.ObtenerUsuarioActualizado(Session["Usuario"] as Usuario);
             return RedirectToAction("Index", "Home");
         }
     }

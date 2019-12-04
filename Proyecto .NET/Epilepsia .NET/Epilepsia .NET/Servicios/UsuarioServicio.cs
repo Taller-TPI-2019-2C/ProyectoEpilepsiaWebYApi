@@ -28,6 +28,11 @@ namespace Epilepsia.NET.Servicios
             return UsuarioDao.ObtenerUsuarioActualizado(usuario);
         }
 
+        public static Usuario ObtenerUsuarioPorId(long id)
+        {
+            return UsuarioDao.ObtenerUsuarioPorId(id);
+        }
+
         public static Usuario ActualizarDatos(Usuario usuario)
         {
             return UsuarioDao.ActualizarDatos(usuario);

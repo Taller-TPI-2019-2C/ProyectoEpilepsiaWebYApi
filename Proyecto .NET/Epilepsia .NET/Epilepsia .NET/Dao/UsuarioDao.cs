@@ -225,6 +225,20 @@ namespace Epilepsia.NET.Dao
             }
         }
 
+        public static Usuario ObtenerUsuarioPorId(long id)
+        {
+            using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())
+            {
+                return ctx.Usuario
+                    .Include("Usuario1")
+                    .Include("Usuario2")
+                    .Include("Medicamento")
+                    .Include("Alerta")
+                    .Include("Alerta1")
+                    .FirstOrDefault(x => x.Id == id);
+            }
+        }
+
         public static Alerta GuardarAlertaManual(Alerta alerta)
         {
             using (Epilepsia_TP_Entities ctx = new Epilepsia_TP_Entities())

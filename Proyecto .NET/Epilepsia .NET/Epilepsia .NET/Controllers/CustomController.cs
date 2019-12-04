@@ -37,7 +37,10 @@ namespace Epilepsia.NET.Controllers
             }
             else
             {
-                ViewBag.Usuario = Session["Usuario"];
+                //villereada rápida
+                Usuario usuario = Session["Usuario"] as Usuario;
+                ViewBag.Usuario = UsuarioServicio.ObtenerUsuarioPorId(usuario.Id);
+                Session["Usuario"] = ViewBag.Usuario;
             }
         }
     }
